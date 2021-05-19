@@ -1,19 +1,20 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.time.LocalDate"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!Doctype>
 <html>
 <head>
-<title>MyApp</title>
+
+<title>Motorcycle</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<h3>Welcome To Project</h3>
-		
-		<c:out value="Hello" />
-		<c:set var="now" value="<%=new Date()%>" />
-		<fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${now}" />
+		<center>
+			<h1 style="color:Indigo">Welcome to Motorcycle Show Room</h1>
+		</center>
+		<ol>
+			<li><a href="Addbike.jsp"><b>Add bike</b> </a></li>
+			<li><a href="BikeList.jsp"><b>Show Currently available
+						bikes</b> </a></li>
+		</ol>
 
 	</main>
 </body>

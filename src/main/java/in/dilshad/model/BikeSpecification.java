@@ -1,34 +1,32 @@
 package in.dilshad.model;
+
 import java.util.HashMap;
 //Project title: Second-hand motorcycle buying, selling & renting
+import java.util.Map;
 
 public class BikeSpecification {
-	public String brand;
-	
-	public String name;
-	
-	public String color;
-	
-	public float price;
-	
-	public int km;
-	
-	public int year;
-	
-	public boolean gear;
-	
-	public HashMap<String,String> engineDetails;
 
-	
+	public String bikeManufacturer;
+
+	public String bikeModel;
+
+	public String bikeColor;
+
+	public float bikePrice;
+
+	public int km;
+
+	public int manufactureYear;
+
+	public boolean status;
+
+	public Map<String, String> engineDetails = new HashMap<>();
 
 	@Override
 	public String toString() {
-		return "BikeSpecification [brand=" + brand + ", name=" + name + ", color=" + color + ", price=" + price
-				+ ", km=" + km + ", year=" + year + ", gear=" + gear + ", engineDetails=" + engineDetails + "]";
+		return "BikeSpecification [brand=" + bikeManufacturer + ", name=" + bikeModel + ", color=" + bikeColor
+				+ ", price=" + bikePrice + ", km=" + km + ", year=" + manufactureYear + ", gear=" + status
+				+ ", engineDetails=" + engineDetails + "]";
 	}
 
-
-
 }
-
-
