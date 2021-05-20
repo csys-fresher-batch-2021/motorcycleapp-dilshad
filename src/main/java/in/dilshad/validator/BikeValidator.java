@@ -24,35 +24,27 @@ public class BikeValidator {
 	public static void validateBikeSpecification(BikeSpecification newBike) throws IllegalArgumentException {
 		List<String> errorList = new ArrayList<>();
 		if (!isValidBikeManufacturer(newBike.bikeManufacturer))
-			//errorList = String.join(" /===/ ", errorList, "Enter Valid Bike Manufacturer");
 			errorList.add("Enter Valid Bike Manufacturer");
 
 		if (!isValidBikeModel(newBike.bikeModel))
-			//errorList = String.join(" /===/ ", errorList, "Enter Valid Bike Model");
 			errorList.add("Enter Valid Bike Model");
 
 		if (!BikeValidator.isValidBikeColor(newBike.bikeColor))
-			//errorList = String.join(" /===/ ", errorList, "Enter Valid Bike Color");
 			errorList.add("Enter Valid Bike Color");
 
 		if (!BikeValidator.isValidKm(newBike.km))
-			//errorList = String.join(" /===/ ", errorList, "Enter Valid Oddometer Reading");
 			errorList.add("Enter Valid Oddometer Reading");
 
 		if (!BikeValidator.isValidManufactureYear(newBike.manufactureYear))
-//			errorList = String.join(" /===/ ", errorList, "Enter Valid Bike Manufacture Year");
 			errorList.add("Enter Valid Bike Manufacture Year");
 
 		if (!isValidVin(newBike.engineDetails.get("vin")))
-//			errorList = String.join(" /===/ ", errorList, "Enter Valid VIN");
 			errorList.add("Enter Valid VIN");
 
 		if (!isValidPlateNumber(newBike.engineDetails.get("noPlate")))
-//			errorList = String.join(" /===/ ", errorList, "Enter Valid Plate number");
 			errorList.add("Enter Valid Plate number");
 
 		if (!isValidBikePrice(newBike.bikePrice))
-//			errorList = String.join(" /===/ ", errorList, "Enter Valid Bike Price");
 			errorList.add("Enter Valid Bike Price");
 			
 		//errorList.stream().collect.joining(","));
@@ -62,7 +54,7 @@ public class BikeValidator {
 		
 		
 		if (!errorList.isEmpty()) {
-			String errorMessage = String.join("\n", errorList);
+			String errorMessage = String.join(",", errorList);
 			throw new IllegalArgumentException(errorMessage);
 		}
 

@@ -1,5 +1,5 @@
 <!Doctype>
-<html>
+<html lang="en">
 <head>
 
 <title>Motorcycle</title>
@@ -7,13 +7,13 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<center>
-			<h1 style="color:Indigo">Welcome to Motorcycle Show Room</h1>
+		<center style="text-align: center">
+			<h1 style="color: Indigo">Welcome to Motorcycle Show Room</h1>
 		</center>
 		<ol>
-			<li><a href="Addbike.jsp"><b>Add bike</b> </a></li>
-			<li><a href="BikeList.jsp"><b>Show Currently available
-						bikes</b> </a></li>
+			<li><a href="Addbike.jsp"><strong>Add bike</strong> </a></li>
+			<li><a href="BikeList.jsp"><strong>Show Currently
+						available bikes</strong> </a></li>
 		</ol>
 
 	</main>

@@ -7,11 +7,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="em">
 <head>
 <style>
 table, th, td {
-  border: 2px solid black;
+	border: 2px solid black;
 }
 </style>
 <meta charset="ISO-8859-1">
@@ -24,15 +24,17 @@ table, th, td {
 		<%
 		Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
 		%>
-		<br><br>
+		<br>
+		<br>
 		<table>
+			<caption>List of Bikes</caption>
 			<thead>
 				<tr>
-					<th>S.no</th>
-					<th>Manufacturer</th>
-					<th>Model</th>
-					<th>Color</th>
-					<th>Price</th>
+					<th scope="col">S.no</th>
+					<th scope="col">Manufacturer</th>
+					<th scope="col">Model</th>
+					<th scope="col">Color</th>
+					<th scope="col">Price</th>
 				</tr>
 			</thead>
 			<tbody>
