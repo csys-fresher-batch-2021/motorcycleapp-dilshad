@@ -1,6 +1,5 @@
 package in.dilshad.service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import in.dilshad.model.BikeDefault;
@@ -8,6 +7,9 @@ import in.dilshad.model.BikeSpecification;
 import in.dilshad.validator.BikeValidator;
 
 public class BikeManager {
+	private BikeManager() {
+
+	}
 
 	private static Map<String, BikeSpecification> bikes = BikeDefault.getDefaultBikes();
 
@@ -37,7 +39,7 @@ public class BikeManager {
 	public static void addBike(BikeSpecification newBike) {
 		try {
 			BikeValidator.validateBikeSpecification(newBike);
-			String key = newBike.engineDetails.get("noPlate");
+			String key = newBike.getEngineDetails().get("noPlate");
 			bikes.put(key, newBike);
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(e.getMessage());

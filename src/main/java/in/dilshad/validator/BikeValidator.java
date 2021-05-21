@@ -23,36 +23,30 @@ public class BikeValidator {
 	 */
 	public static void validateBikeSpecification(BikeSpecification newBike) throws IllegalArgumentException {
 		List<String> errorList = new ArrayList<>();
-		if (!isValidBikeManufacturer(newBike.bikeManufacturer))
+		if (!isValidBikeManufacturer(newBike.getBikeManufacturer()))
 			errorList.add("Enter Valid Bike Manufacturer");
 
-		if (!isValidBikeModel(newBike.bikeModel))
+		if (!isValidBikeModel(newBike.getBikeModel()))
 			errorList.add("Enter Valid Bike Model");
 
-		if (!BikeValidator.isValidBikeColor(newBike.bikeColor))
+		if (!BikeValidator.isValidBikeColor(newBike.getBikeColor()))
 			errorList.add("Enter Valid Bike Color");
 
-		if (!BikeValidator.isValidKm(newBike.km))
+		if (!BikeValidator.isValidKm(newBike.getKm()))
 			errorList.add("Enter Valid Oddometer Reading");
 
-		if (!BikeValidator.isValidManufactureYear(newBike.manufactureYear))
+		if (!BikeValidator.isValidManufactureYear(newBike.getManufactureYear()))
 			errorList.add("Enter Valid Bike Manufacture Year");
 
-		if (!isValidVin(newBike.engineDetails.get("vin")))
+		if (!isValidVin(newBike.getEngineDetails().get("vin")))
 			errorList.add("Enter Valid VIN");
 
-		if (!isValidPlateNumber(newBike.engineDetails.get("noPlate")))
+		if (!isValidPlateNumber(newBike.getEngineDetails().get("noPlate")))
 			errorList.add("Enter Valid Plate number");
 
-		if (!isValidBikePrice(newBike.bikePrice))
+		if (!isValidBikePrice(newBike.getBikePrice()))
 			errorList.add("Enter Valid Bike Price");
-			
-		//errorList.stream().collect.joining(","));
-		// String str = geeklist.stream().collect(Collectors.joining(","));
-		// String str = String.join(",", geeklist);
-		//Convert List to comma separated string
-		
-		
+
 		if (!errorList.isEmpty()) {
 			String errorMessage = String.join(",", errorList);
 			throw new IllegalArgumentException(errorMessage);

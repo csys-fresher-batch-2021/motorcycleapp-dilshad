@@ -69,8 +69,8 @@ label {
 			<div class="form">
 				<label for="vin"><strong>Vehicle Identification
 						Number:</strong></label> <input type="text" id="vin" name="vin" required
-					autocomplete="on" placeholder="Enter VIN here"> <i>(17
-					Digit Alphanumeric)</i><br>
+					autocomplete="on" placeholder="Enter VIN here"> <em>(17
+					Digit Alphanumeric)</em><br>
 			</div>
 
 			<div class="form">
@@ -82,16 +82,16 @@ label {
 
 			<div class="form">
 				<label for="price"><strong>Estimated Price:</strong></label> <input
-					type="number" id="price" name="price" min="1" max ="300000" required
+					type="number" id="price" name="price" min="1" max="300000" required
 					placeholder="Enter Price here"> <em>Excluding GST and
 					Insurance</em><br>
 			</div>
 
 			<div class="form">
-				<strong> Status: &emsp; &emsp;</strong> 
-				<input type="radio"	name="status" value="true">Verified
-				 <input type="radio"name="status" value="false" required>Not Verified 
-				 <br> <br>
+				<strong> Status: &emsp; &emsp;</strong> <input type="radio"
+					name="status" value="true">Verified <input type="radio"
+					name="status" value="false" required>Not Verified <br>
+				<br>
 			</div>
 
 			<br><jsp:include page="message.jsp"></jsp:include><br>

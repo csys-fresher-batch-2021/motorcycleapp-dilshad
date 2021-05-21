@@ -21,13 +21,12 @@ table, th, td {
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 
-		<%
-		Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
-		%>
-		<br>
-		<br>
+
+		<br> <br>
+		<h4>List of Available bikes</h4>
 		<table>
 			<caption>List of Bikes</caption>
+
 			<thead>
 				<tr>
 					<th scope="col">S.no</th>
@@ -39,14 +38,15 @@ table, th, td {
 			</thead>
 			<tbody>
 				<%
+				Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
 				int i = 1;
 				for (BikeSpecification bike : bikeList.values()) {
 					out.print("<tr>");
 					out.print("<td>" + i + "</td>");
-					out.print("<td>" + bike.bikeManufacturer + "</td>");
-					out.print("<td>" + bike.bikeModel + "</td>");
-					out.print("<td>" + bike.bikeColor + "</td>");
-					out.print("<td>" + bike.bikePrice + "</td>");
+					out.print("<td>" + bike.getBikeManufacturer() + "</td>");
+					out.print("<td>" + bike.getBikeModel() + "</td>");
+					out.print("<td>" + bike.getBikeColor() + "</td>");
+					out.print("<td>" + bike.getBikePrice() + "</td>");
 					out.print("</tr>");
 					i++;
 				}
