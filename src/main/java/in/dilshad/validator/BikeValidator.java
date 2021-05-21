@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
 import in.dilshad.model.BikeSpecification;
 
 public class BikeValidator {
@@ -64,7 +62,7 @@ public class BikeValidator {
 	public static boolean isValidBikeManufacturer(String BikeManufacturer) {
 		return StringValidator.isAlpha(BikeManufacturer);
 	}
-
+ 
 	/**
 	 * Validates the name of Bike Model Checks the presence of Alphanumeric
 	 * character

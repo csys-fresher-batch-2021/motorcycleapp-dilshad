@@ -5,6 +5,10 @@ import java.util.regex.Pattern;
 
 public class StringValidator {
 
+	private StringValidator() {
+		// Default constructor
+	}
+
 	/**
 	 * Checks the presence of null character and whitespace
 	 * 

@@ -3,8 +3,6 @@ package in.dilshad.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import in.dilshad.validator.BikeValidator;
-
 public class BikeDefault {
 	private BikeDefault() {
 
