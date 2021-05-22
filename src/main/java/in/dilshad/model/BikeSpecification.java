@@ -6,13 +6,9 @@ import java.util.Map;
 
 public class BikeSpecification {
 
-	// Default constructor
 	public BikeSpecification() {
-
-	}
-
-	public BikeSpecification(String bikeModel) {
-		this.bikeModel = bikeModel;
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	private String bikeManufacturer;

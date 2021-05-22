@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import in.dilshad.model.BikeSpecification;
 
 public class BikeValidator {
@@ -62,7 +63,7 @@ public class BikeValidator {
 	public static boolean isValidBikeManufacturer(String BikeManufacturer) {
 		return StringValidator.isAlpha(BikeManufacturer);
 	}
- 
+
 	/**
 	 * Validates the name of Bike Model Checks the presence of Alphanumeric
 	 * character
@@ -93,8 +94,8 @@ public class BikeValidator {
 	 */
 	public static boolean isValidPlateNumber(String noPlate) {
 		boolean isValid = false;
-		if (StringValidator.isValidString(noPlate))
-			isValid = Pattern.matches("[A-Z]{2}[0-9]{2}[A-Z]{1}[0-9]{4}", noPlate);
+		if (StringValidator.isValidString(noPlate.trim()))
+			isValid = Pattern.matches("[A-Z]{2}[0-9]{2}[A-Z]{1,3}[0-9]{4}", noPlate);
 		return isValid;
 	}
 
@@ -149,7 +150,7 @@ public class BikeValidator {
 	 */
 	public static boolean isValidVin(String vin) {
 		boolean isValid = false;
-		if (StringValidator.isValidString(vin)) {
+		if (StringValidator.isValidString(vin.trim())) {
 			Pattern pattern = Pattern.compile("[A-Z0-9]{17}");
 			Matcher matcher = pattern.matcher(vin);
 			isValid = matcher.find();

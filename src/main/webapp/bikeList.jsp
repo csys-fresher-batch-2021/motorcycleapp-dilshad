@@ -10,8 +10,19 @@
 <html lang="em">
 <head>
 <style>
-table, th, td {
-	border: 2px solid black;
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+tr:hover {
+	background-color: #f5f5f5;
 }
 </style>
 <meta charset="ISO-8859-1">
@@ -33,6 +44,9 @@ table, th, td {
 					<th scope="col">Manufacturer</th>
 					<th scope="col">Model</th>
 					<th scope="col">Color</th>
+					<th scope="col">Fuel</th>
+					<th scope="col">Year</th>
+					<th scope="col">Plate no.</th>
 					<th scope="col">Price</th>
 				</tr>
 			</thead>
@@ -46,7 +60,10 @@ table, th, td {
 					out.print("<td>" + bike.getBikeManufacturer() + "</td>");
 					out.print("<td>" + bike.getBikeModel() + "</td>");
 					out.print("<td>" + bike.getBikeColor() + "</td>");
-					out.print("<td>" + bike.getBikePrice() + "</td>");
+					out.print("<td>" + bike.getEngineDetails().get("fuelType") + "</td>");
+					out.print("<td>" + bike.getManufactureYear() + "</td>");
+					out.print("<td>" + bike.getEngineDetails().get("noPlate") + "</td>");
+					out.print("<td>" + "Rs." + bike.getBikePrice() + "</td>");
 					out.print("</tr>");
 					i++;
 				}

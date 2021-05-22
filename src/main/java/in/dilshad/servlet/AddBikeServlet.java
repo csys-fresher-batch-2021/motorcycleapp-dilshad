@@ -32,25 +32,25 @@ public class AddBikeServlet extends HttpServlet {
 
 		String infoMessage = "Successfull input";
 
-		newBike.setBikeManufacturer(request.getParameter("bikeManufacturer"));
-		newBike.setBikeModel(request.getParameter("bikeModel"));
-		newBike.setBikeColor(request.getParameter("bikeColor"));
+		newBike.setBikeManufacturer(request.getParameter("bikeManufacturer").trim());
+		newBike.setBikeModel(request.getParameter("bikeModel").trim());
+		newBike.setBikeColor(request.getParameter("bikeColor").trim());
 		Map<String, String> engineDetails = new HashMap<>();
-		engineDetails.put("fuelType", request.getParameter("fuelType"));
-		engineDetails.put("vin", request.getParameter("vin"));
-		engineDetails.put("noPlate", request.getParameter("noPlate"));
+		engineDetails.put("fuelType", request.getParameter("fuelType").trim());
+		engineDetails.put("vin", request.getParameter("vin").trim());
+		engineDetails.put("noPlate", request.getParameter("noPlate").trim());
 		newBike.setEngineDetails(engineDetails);
-		newBike.setStatus(Boolean.parseBoolean(request.getParameter("status")));
+		newBike.setStatus(Boolean.parseBoolean(request.getParameter("status").trim()));
 
 		try {
-			newBike.setKm(Integer.parseInt(request.getParameter("km")));
-			newBike.setManufactureYear(Integer.parseInt(request.getParameter("manufactureYear")));
-			newBike.setBikePrice(Float.parseFloat(request.getParameter("price")));
+			newBike.setKm(Integer.parseInt(request.getParameter("km").trim()));
+			newBike.setManufactureYear(Integer.parseInt(request.getParameter("manufactureYear").trim()));
+			newBike.setBikePrice(Float.parseFloat(request.getParameter("price").trim()));
 			BikeManager.addBike(newBike);
-			response.sendRedirect("BikeList.jsp?infoMessage=" + infoMessage);
+			response.sendRedirect("bikeList.jsp?infoMessage=" + infoMessage);
 
 		} catch (Exception e) {
-			response.sendRedirect("Addbike.jsp?errorMessage=" + e.getMessage());
+			response.sendRedirect("addBike.jsp?errorMessage=" + e.getMessage());
 		}
 
 	}

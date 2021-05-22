@@ -11,7 +11,7 @@ public class BikeDefault {
 	private static final Map<String, BikeSpecification> DefaultBikeMap = new HashMap<>();
 	// Plate number - as key value
 	private static final String FUEL = "fuelType";
-	private static final String VIN = "fuelType";
+	private static final String VIN = "vin";
 	private static final String PLATE = "noPlate";
 
 	static {
@@ -63,7 +63,7 @@ public class BikeDefault {
 		Map<String, String> engine3 = new HashMap<>();
 		engine3.put(FUEL, "Petrol");
 		engine3.put(VIN, "IKA45DFDG9TSR3670");
-		engine3.put(PLATE, "AP-67A8902");
+		engine3.put(PLATE, "AP67A8902");
 		bike3.setEngineDetails(engine3);
 
 		// Sample bike 4
@@ -80,7 +80,7 @@ public class BikeDefault {
 		Map<String, String> engine4 = new HashMap<>();
 		engine4.put(FUEL, "Electric");
 		engine4.put(VIN, "ELA45OFD5PTSR3670");
-		engine4.put(PLATE, "KL-67A1143");
+		engine4.put(PLATE, "KL67A1143");
 		bike4.setEngineDetails(engine4);
 
 		DefaultBikeMap.put(engine1.get(PLATE), bike1);

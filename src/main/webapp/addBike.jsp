@@ -22,24 +22,24 @@ label {
 	<main class="container-fluid">
 		<h2>Add upcoming bikes</h2>
 		<br>
-		<form action="Addbikeservlet" method="GET">
+		<form action="Addbikeservlet" method="GET" autocomplete="on">
 			<div class="form">
 				<label for="bikeManufacturer"><strong>Enter Bike
 						Manufacturer:</strong></label> <input type="text" id="bikeManufacturer"
-					name="bikeManufacturer" required autofocus autocomplete="on"
+					name="bikeManufacturer" required autofocus
 					placeholder="Enter Bike Manufacturer name"> <br>
 			</div>
 
 			<div class="form">
 				<label for="bikeModel"><strong>Bike Model:</strong></label> <input
 					type="text" id="bikeModel" name="bikeModel" required
-					autocomplete="on" placeholder="Enter Bike model here"> <br>
+					placeholder="Enter Bike model here"> <br>
 			</div>
 
 			<div class="form">
 				<label for="bikeColor"><strong>Bike Color:</strong></label> <input
 					type="text" id="bikeColor" name="bikeColor" required
-					autocomplete="on" placeholder="Enter Bike color here"> <br>
+					placeholder="Enter Bike color here"> <br>
 			</div>
 
 			<div class="form">
@@ -69,13 +69,13 @@ label {
 			<div class="form">
 				<label for="vin"><strong>Vehicle Identification
 						Number:</strong></label> <input type="text" id="vin" name="vin" required
-					autocomplete="on" placeholder="Enter VIN here"> <em>(17
-					Digit Alphanumeric)</em><br>
+					placeholder="Enter VIN here"> <em>(17 Digit
+					Alphanumeric)</em><br>
 			</div>
 
 			<div class="form">
 				<label for="noPlate"><strong>Number Plate:</strong></label> <input
-					type="text" id="noPlate" name="noPlate" required autocomplete="on"
+					type="text" id="noPlate" name="noPlate" required
 					placeholder="Enter Number Plate"> <em>Format eg.
 					TN67E3454</em><br>
 			</div>
@@ -105,4 +105,3 @@ label {
 
 
 </body>
-</html>
