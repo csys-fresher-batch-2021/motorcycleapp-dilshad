@@ -7,7 +7,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="in.dilshad.service.BikeManager"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <style>
 .card {
@@ -51,11 +51,11 @@ img {
 					"<p> <strong>" + "Plate No.: " + "</strong>" + bikeSpecification.getEngineDetails().get("noPlate") + "</p>");
 			%>
 			<img
-				src="https://apollo-singapore.akamaized.net/v1/files/38z7io89r8zk3-IN/image;s=272x0"
+				src="https://bd.gaadicdn.com/upload/usedbikesimages/2020/08/5f48a569b41e2.jpg?tr=w-267"
 				alt="Bike image" style="width: 100%">
 
 			<div class="container"
-				style="background-color: rgb(60, 179, 113, 0.5);">
+				style="background-color: rgb(60, 179, 113, 0.3);">
 				<%
 				out.println("<p> <strong>" + "Manufacturer: " + "</strong>" + bikeSpecification.getBikeManufacturer() + "</p>");
 				out.println("<p> <strong>" + "Model: " + "</strong>" + bikeSpecification.getBikeModel() + "</p>");

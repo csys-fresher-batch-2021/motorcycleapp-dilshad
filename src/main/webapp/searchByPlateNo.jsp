@@ -7,7 +7,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="in.dilshad.service.BikeManager"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Search Bike</title>
@@ -27,13 +27,14 @@
 		<%
 		BikeSpecification bikeSpecification = new BikeSpecification();
 		Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
-		//String plateNo = (request.getParameter("noPlate").trim());
 		%>
+
 		<table>
+			<caption>Available Plate No.</caption>
 			<thead>
 				<tr>
-					<th>S.no</th>
-					<th>Plate number</th>
+					<th scope="col">Sno</th>
+					<th scope="col">Plate number</th>
 				</tr>
 			</thead>
 			<tbody>

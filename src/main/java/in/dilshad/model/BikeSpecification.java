@@ -8,7 +8,7 @@ public class BikeSpecification {
 
 	public BikeSpecification() {
 		super();
-		// TODO Auto-generated constructor stub
+		// Default constructor
 	}
 
 	private String bikeManufacturer;

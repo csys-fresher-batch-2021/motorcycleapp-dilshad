@@ -1,4 +1,3 @@
-
 <!Doctype>
 <html lang="en">
 <head>
@@ -24,13 +23,15 @@ th {
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<h1 style="text-align: center; color: Indigo">Welcome to
-			Motorcycle Show Room</h1>
-
+		<header>
+			<h1 style="text-align: center; color: Indigo">Welcome to
+				Motorcycle Show Room</h1>
+		</header>
 		<ol>
 			<li><a href="addBike.jsp"><strong>Add bike</strong> </a></li>
 			<li><a href="bikeList.jsp"><strong>Show Currently
 						available bikes</strong> </a></li>
+						<li><a href="searchByPlateNo.jsp"><strong>Search Bike by plate Number</strong> </a></li>
 		</ol>
 		<article class="column">
 			<h3>About us</h3>
@@ -40,45 +41,38 @@ th {
 					alt="Motorcycle Show room"
 					style="width: 400px; height: 270px; margin-left: 15px; float: right;">
 
-				We offer a veritable platform that deals with Used Bikes, New Bike
-				Booking and acts as a knowledge hub for everything related to
-				two-wheelers. We have rich collection of used motorcycles of all
-				models that are in good condition and best quality. We also strive
-				to give expert advice to our users on their queries, provide
-				information regarding insurance and loan, generate original test
-				drive reviews, disseminate news about new bike launches, helps to
+				We offer a veritable platform that deals with Used Bikes, Booking
+				and acts as a knowledge hub for everything related to two-wheelers.
+				We have rich collection of used motorcycles of all models that are
+				in good condition and best quality. We also strive to give expert
+				advice to our users on their queries, provide information regarding
+				insurance and loan, generate original test drive reviews, helps to
 				locate Bike Dealers (both new and used bikes) and a lot more.
 			</p>
 
 		</article>
 		<article>
-			<h3>Our Mission</h3>
-			<p>
-				<strong>To simplify the whole concept of trading pre-owned
-					bikes and owning new bikes. To become a one-stop platform for the
-					trade of bikes (new & used) and serve as information hub to take
-					wise decisions.</strong>
-			</p>
+			<h3>Benefits</h3>
+			<ol><li>People who migrate can purchase used bikes for temporary usage.</li>
+			<li> Situation in which you may use vehicle only weekly or monthly etc.</li>
+			<li> Used bikes may costs only half of the new bike price.</li>
+			<li> Useful for people who wants to own vehicle at low budget.</li>
+			<li> Additional features could be included based on the requirement.</li>
+			</ol>
 		</article>
-		<table>
 
-			<tr>
-				<th>Services</th>
-			</tr>
+		<h4>Services</h4>
+		<ul>
+			<li>Bike Valuation</li>
+			<li>Two-wheeler Finance</li>
+			<li>Featured Listing</li>
+			<li>Used Bike Dealer Plan</li>
+			<li>Two-wheeler Insurance</li>
+		</ul>
 
-			<tr>
-				<td>Bike Valuation</td>
-				<td>Two-wheeler Finance</td>
-				<td>Two-wheeler Insurance</td>
-			</tr>
-
-			<tr>
-				<td>Featured Listing</td>
-				<td>Used Bike Dealer Plan</td>
-			</tr>
-
-		</table>
-		<footer> </footer>
+		<footer style="background-color: SlateBlue;">
+			<p>Make Hay While the Sun Shines.</p>
+		</footer>
 
 
 	</main>
