@@ -3,14 +3,20 @@ package in.dilshad.validator;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import in.dilshad.model.BikeSpecification;
+import in.dilshad.service.BikeManager;
 
 public class BikeValidator {
+
 	private BikeValidator() {
 		// to avoid object creation
 	}
+
+	static List<String> errorList = new ArrayList<>();
 
 	/**
 	 * This method checks the Bike Specification fields. Throws exception when any
@@ -20,7 +26,6 @@ public class BikeValidator {
 	 * @throws IllegalArgumentException
 	 */
 	public static void validateBikeSpecification(BikeSpecification newBike) throws IllegalArgumentException {
-		List<String> errorList = new ArrayList<>();
 		if (!isValidBikeManufacturer(newBike.getBikeManufacturer()))
 			errorList.add("Enter Valid Bike Manufacturer");
 
@@ -45,6 +50,8 @@ public class BikeValidator {
 		if (!isValidBikePrice(newBike.getBikePrice()))
 			errorList.add("Enter Valid Bike Price");
 
+		validateUniqueFeatures(newBike.getEngineDetails().get("noPlate"), newBike.getEngineDetails().get("vin"));
+
 		if (!errorList.isEmpty()) {
 			String errorMessage = String.join(",", errorList);
 			throw new IllegalArgumentException(errorMessage);
@@ -62,7 +69,7 @@ public class BikeValidator {
 	public static boolean isValidBikeManufacturer(String BikeManufacturer) {
 		return StringValidator.isAlpha(BikeManufacturer);
 	}
- 
+
 	/**
 	 * Validates the name of Bike Model Checks the presence of Alphanumeric
 	 * character
@@ -71,7 +78,7 @@ public class BikeValidator {
 	 * @return
 	 */
 	public static boolean isValidBikeModel(String BikeModel) {
-		return StringValidator.isAlpha(BikeModel);
+		return (StringValidator.isValidString(BikeModel) && !StringValidator.isSpecialCharPresent(BikeModel));
 	}
 
 	/**
@@ -93,8 +100,8 @@ public class BikeValidator {
 	 */
 	public static boolean isValidPlateNumber(String noPlate) {
 		boolean isValid = false;
-		if (StringValidator.isValidString(noPlate))
-			isValid = Pattern.matches("[A-Z]{2}[0-9]{2}[A-Z]{1}[0-9]{4}", noPlate);
+		if (StringValidator.isValidString(noPlate.trim()))
+			isValid = Pattern.matches("[A-Z]{2}[0-9]{2}[A-Z]{1,3}[0-9]{4}", noPlate);
 		return isValid;
 	}
 
@@ -122,7 +129,7 @@ public class BikeValidator {
 	 */
 	public static boolean isValidKm(int km) {
 		boolean isValid = false;
-		if (km > 0 && km < 300000)
+		if (km > 0 && km < 500000)
 			isValid = true;
 		return isValid;
 	}
@@ -149,11 +156,27 @@ public class BikeValidator {
 	 */
 	public static boolean isValidVin(String vin) {
 		boolean isValid = false;
-		if (StringValidator.isValidString(vin)) {
+		if (StringValidator.isValidString(vin.trim())) {
 			Pattern pattern = Pattern.compile("[A-Z0-9]{17}");
 			Matcher matcher = pattern.matcher(vin);
 			isValid = matcher.find();
 		}
 		return isValid;
+	}
+
+	/**
+	 * This method checks that the Plate no and VIN of newly added bike - is not
+	 * present in the existing bikes. It ensures the unique property of Plate no and
+	 * VIN.
+	 * 
+	 * @param bike
+	 * @return
+	 */
+	public static void validateUniqueFeatures(String noPlate, String vin) {
+		Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
+		if (bikeList.containsKey(noPlate))
+			errorList.add("Plate numbers must be unique");
+		if (bikeList.containsKey(vin))
+			errorList.add("VIN must be unique");
 	}
 }

@@ -30,10 +30,12 @@ public class StringValidator {
 	 * @return
 	 */
 	public static boolean isSpecialCharPresent(String inputString) {
-		System.out.println(inputString.trim());
-		Pattern pattern = Pattern.compile("[^a-zA-Z0-9' ']");
-		Matcher matcher = pattern.matcher(inputString.trim());
-		return matcher.find();
+		if (isValidString(inputString)) {
+			Pattern pattern = Pattern.compile("[^a-zA-Z0-9' ']");
+			Matcher matcher = pattern.matcher(inputString.trim());
+			return matcher.find();
+		} else
+			return false;
 	}
 
 	/**
@@ -43,10 +45,12 @@ public class StringValidator {
 	 * @return
 	 */
 	public static boolean isNumberPresent(String inputString) {
-		Pattern pattern = Pattern.compile("[0-9]");
-		Matcher matcher = pattern.matcher(inputString);
-		return matcher.find();
-
+		if (isValidString(inputString)) {
+			Pattern pattern = Pattern.compile("[0-9]");
+			Matcher matcher = pattern.matcher(inputString);
+			return matcher.find();
+		} else
+			return false;
 	}
 
 	/**
