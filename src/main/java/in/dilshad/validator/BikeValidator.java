@@ -3,15 +3,20 @@ package in.dilshad.validator;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import in.dilshad.model.BikeSpecification;
+import in.dilshad.service.BikeManager;
 
 public class BikeValidator {
+
 	private BikeValidator() {
 		// to avoid object creation
 	}
+
+	static List<String> errorList = new ArrayList<>();
 
 	/**
 	 * This method checks the Bike Specification fields. Throws exception when any
@@ -21,7 +26,6 @@ public class BikeValidator {
 	 * @throws IllegalArgumentException
 	 */
 	public static void validateBikeSpecification(BikeSpecification newBike) throws IllegalArgumentException {
-		List<String> errorList = new ArrayList<>();
 		if (!isValidBikeManufacturer(newBike.getBikeManufacturer()))
 			errorList.add("Enter Valid Bike Manufacturer");
 
@@ -45,6 +49,8 @@ public class BikeValidator {
 
 		if (!isValidBikePrice(newBike.getBikePrice()))
 			errorList.add("Enter Valid Bike Price");
+
+		validateUniqueFeatures(newBike.getEngineDetails().get("noPlate"), newBike.getEngineDetails().get("vin"));
 
 		if (!errorList.isEmpty()) {
 			String errorMessage = String.join(",", errorList);
@@ -72,7 +78,7 @@ public class BikeValidator {
 	 * @return
 	 */
 	public static boolean isValidBikeModel(String BikeModel) {
-		return StringValidator.isAlpha(BikeModel);
+		return (StringValidator.isValidString(BikeModel) && !StringValidator.isSpecialCharPresent(BikeModel));
 	}
 
 	/**
@@ -123,7 +129,7 @@ public class BikeValidator {
 	 */
 	public static boolean isValidKm(int km) {
 		boolean isValid = false;
-		if (km > 0 && km < 300000)
+		if (km > 0 && km < 500000)
 			isValid = true;
 		return isValid;
 	}
@@ -156,5 +162,21 @@ public class BikeValidator {
 			isValid = matcher.find();
 		}
 		return isValid;
+	}
+
+	/**
+	 * This method checks that the Plate no and VIN of newly added bike - is not
+	 * present in the existing bikes. It ensures the unique property of Plate no and
+	 * VIN.
+	 * 
+	 * @param bike
+	 * @return
+	 */
+	public static void validateUniqueFeatures(String noPlate, String vin) {
+		Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
+		if (bikeList.containsKey(noPlate))
+			errorList.add("Plate numbers must be unique");
+		if (bikeList.containsKey(vin))
+			errorList.add("VIN must be unique");
 	}
 }

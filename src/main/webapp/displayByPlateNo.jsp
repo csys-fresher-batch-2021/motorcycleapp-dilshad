@@ -37,7 +37,7 @@ img {
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<h2>Bike Details</h2>
+		<h2>Bike Details</h2><br>
 		<%
 		BikeSpecification bikeSpecification = new BikeSpecification();
 		Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
@@ -51,7 +51,7 @@ img {
 					"<p> <strong>" + "Plate No.: " + "</strong>" + bikeSpecification.getEngineDetails().get("noPlate") + "</p>");
 			%>
 			<img
-				src="https://bd.gaadicdn.com/upload/usedbikesimages/2020/08/5f48a569b41e2.jpg?tr=w-267"
+				src="https://www.drivespark.com/bikes-photos/models/450x350/ct100_1515499232.jpg/3/x.pagespeed.ic.367gLOJb09.jpg"
 				alt="Bike image" style="width: 100%">
 
 			<div class="container"

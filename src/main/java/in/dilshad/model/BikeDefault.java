@@ -98,5 +98,4 @@ public class BikeDefault {
 	public static Map<String, BikeSpecification> getDefaultBikes() {
 		return DefaultBikeMap;
 	}
-
 }

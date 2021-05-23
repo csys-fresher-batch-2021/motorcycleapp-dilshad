@@ -7,17 +7,17 @@ import org.junit.Test;
 import in.dilshad.service.BikeManager;
 
 public class DisplayBikeTest {
-	
+
 	/**
-	 * Checks whether display method throws exception. 
+	 * Checks whether display method throws exception.
 	 */
 	@Test
 	public void DisplayBikeTest() {
 		try {
 			BikeManager.displayBikes();
 			assertTrue(true);
-		}catch (Exception e) {
-			assertFalse(false);
+		} catch (Exception e) {
+			assertFalse(true);
 		}
 	}
 

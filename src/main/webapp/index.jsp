@@ -31,7 +31,8 @@ th {
 			<li><a href="addBike.jsp"><strong>Add bike</strong> </a></li>
 			<li><a href="bikeList.jsp"><strong>Show Currently
 						available bikes</strong> </a></li>
-						<li><a href="searchByPlateNo.jsp"><strong>Search Bike by plate Number</strong> </a></li>
+			<li><a href="searchByPlateNo.jsp"><strong>Search
+						Bike by plate Number</strong> </a></li>
 		</ol>
 		<article class="column">
 			<h3>About us</h3>
@@ -53,11 +54,15 @@ th {
 		</article>
 		<article>
 			<h3>Benefits</h3>
-			<ol><li>People who migrate can purchase used bikes for temporary usage.</li>
-			<li> Situation in which you may use vehicle only weekly or monthly etc.</li>
-			<li> Used bikes may costs only half of the new bike price.</li>
-			<li> Useful for people who wants to own vehicle at low budget.</li>
-			<li> Additional features could be included based on the requirement.</li>
+			<ol>
+				<li>People who migrate can purchase used bikes for temporary
+					usage.</li>
+				<li>Situation in which you may use vehicle only weekly or
+					monthly etc.</li>
+				<li>Used bikes may costs only half of the new bike price.</li>
+				<li>Useful for people who wants to own vehicle at low budget.</li>
+				<li>Additional features could be included based on the
+					requirement.</li>
 			</ol>
 		</article>
 
