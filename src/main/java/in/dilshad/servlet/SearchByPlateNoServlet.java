@@ -19,30 +19,39 @@ import in.dilshad.service.BikeManager;
 @WebServlet("/SearchByPlateNoServlet")
 public class SearchByPlateNoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SearchByPlateNoServlet() {
-        super();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//1. Get Form Values
+	public SearchByPlateNoServlet() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// 1. Get Form Values
 		String plateNo = (request.getParameter("noPlate").trim());
+
 		
-		BikeSpecification bikeSpecification = new BikeSpecification();
 		Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
-		
-		bikeSpecification = bikeList.get(plateNo);
+		BikeSpecification bikeSpecification  = bikeList.get(plateNo);
 		request.setAttribute("BIKE_SPECIFICATION", bikeSpecification);
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("displayByPlateNo.jsp");
-		dispatcher.forward(request, response);
+		try {
+			dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			// Sonar cloud tells to put try catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// Sonar cloud tells to put try catch block
+			e.printStackTrace();
+		}
 	}
 }
-	

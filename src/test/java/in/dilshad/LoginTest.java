@@ -9,6 +9,10 @@ import junit.framework.Assert;
 
 public class LoginTest {
 
+	/**
+	 * Admin Id : Must not be null.
+	 * Default value is set as "admin"
+	 */
 	@Test
 	public void adminIDTest() {
 		String string1 = "admin";
@@ -27,6 +31,10 @@ public class LoginTest {
 		assertFalse(UserValidator.isValidAdmin(string5));
 	}
 	
+	/**
+	 * Password: Must not be null, can contain alphanumeric & special characters
+	 * Default password is set as "admin!"
+	 */
 	@Test
 	public void adminPassWordTest() {
 		String string1 = "admin!";

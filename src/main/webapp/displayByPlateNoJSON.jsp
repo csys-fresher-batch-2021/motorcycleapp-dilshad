@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
@@ -21,14 +21,15 @@
 	</form>
 
 	<table>
+		<caption>Bike Details</caption>
 		<thead>
 			<tr>
-				<th>Manufacturer</th>
-				<th>Model</th>
-				<th>Color</th>
-				<th>Price</th>
-				<th>Km</th>
-				<th>Year</th>
+				<th scope="col">Manufacturer</th>
+				<th scope="col">Model</th>
+				<th scope="col">Color</th>
+				<th scope="col">Price</th>
+				<th scope="col">Km</th>
+				<th scope="col">Year</th>
 			</tr>
 		</thead>
 		<tbody id="task-tbl">

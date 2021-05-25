@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.service.BikeManager;
+import in.dilshad.util.Logger;
 
 /**
  * Servlet implementation class SearchByPlateNoJsonServlet
@@ -33,25 +34,29 @@ public class SearchByPlateNoJsonServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 1. Get Form Values
 		String plateNo = (request.getParameter("noPlate"));
 
-		BikeSpecification bikeSpecification = new BikeSpecification();
 		Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
 		// Step 2: Convert to Json string
 
-		bikeSpecification = bikeList.get(plateNo);
+		BikeSpecification bikeSpecification = bikeList.get(plateNo);
 
 		Gson gson = new Gson();
 		String json = gson.toJson(bikeSpecification);
-		System.out.println("Approach #2: GSON JAR \n" + json);
-
+		Logger.println("Approach #2: GSON JAR \n" + json);
+		
 		// Step 3: Write the json in response and flush it
-		PrintWriter out = response.getWriter();
-		out.print(json);
-		out.flush();
+		try {
+			PrintWriter out = response.getWriter();
+			out.print(json);
+			out.flush();
+		} catch (IOException e) {
+			// Sonar cloud tells to put try catch block
+		}
 	}
 
 }
