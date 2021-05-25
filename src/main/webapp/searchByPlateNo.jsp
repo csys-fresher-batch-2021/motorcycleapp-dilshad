@@ -17,7 +17,7 @@
 	<main class="container-fluid">
 		<h2>Search the Bike using Plate Number</h2>
 		<div style="text-align: center;">
-			<form action="displayByPlateNo.jsp">
+			<form action="SearchByPlateNoJsonServlet">
 				<label for="plateNo"><strong>Enter the Plate
 						Number: </strong></label> <input type="text" id="noPlate" name="noPlate" required
 					placeholder="Plate Number" autofocus>
@@ -33,7 +33,7 @@
 			<caption>Available Plate No.</caption>
 			<thead>
 				<tr>
-					<th scope="col">Sno</th>
+					<th scope="col">S.no</th>
 					<th scope="col">Plate number</th>
 				</tr>
 			</thead>

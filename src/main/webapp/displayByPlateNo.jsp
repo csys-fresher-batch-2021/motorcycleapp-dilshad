@@ -39,10 +39,13 @@ img {
 	<main class="container-fluid">
 		<h2>Bike Details</h2><br>
 		<%
-		BikeSpecification bikeSpecification = new BikeSpecification();
-		Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
-		String plateNo = (request.getParameter("noPlate").trim());
-		bikeSpecification = bikeList.get(plateNo);
+		BikeSpecification bikeSpecification = (BikeSpecification) request.getAttribute("BIKE_SPECIFICATION");
+		
+		if(bikeSpecification == null){
+			out.println("No Reccords");
+		}
+		else{
+		
 		%>
 
 		<div class="card">
@@ -57,6 +60,7 @@ img {
 			<div class="container"
 				style="background-color: rgb(60, 179, 113, 0.3);">
 				<%
+				
 				out.println("<p> <strong>" + "Manufacturer: " + "</strong>" + bikeSpecification.getBikeManufacturer() + "</p>");
 				out.println("<p> <strong>" + "Model: " + "</strong>" + bikeSpecification.getBikeModel() + "</p>");
 				out.println("<p> <strong>" + "Color: " + "</strong>" + bikeSpecification.getBikeColor() + "</p>");
@@ -68,6 +72,8 @@ img {
 				out.println("<p> <strong>" + "VIN: " + "</strong>" + bikeSpecification.getEngineDetails().get("vin") + "</p>");
 				%>
 			</div>
+			
+			<%} %>
 		</div>
 	</main>
 </body>

@@ -18,7 +18,7 @@ import org.junit.Test;
 
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.service.BikeManager;
-import in.dilshad.validator.StringValidator;
+import in.dilshad.util.StringValidator;
 
 public class StringValidatorTest {
 

@@ -33,14 +33,14 @@ th {
 						available bikes</strong> </a></li>
 			<li><a href="searchByPlateNo.jsp"><strong>Search
 						Bike by plate Number</strong> </a></li>
+			<li><a href="displayByPlateNoJSON.jsp"><strong>Search
+						Bike by plate Number (Using Json)</strong> </a></li>
 		</ol>
 		<article class="column">
 			<h3>About us</h3>
 			<p>
-				<img
-					src="https://www.rideexpeditions.com/wp-content/uploads/2017/09/Buying-a-used-bike.jpg"
-					alt="Motorcycle Show room"
-					style="width: 400px; height: 270px; margin-left: 15px; float: right;">
+				<img src="assets/images/showroom.png" alt="Motorcycle Show room"
+					style="width: 400px; height: 280px; margin-left: 15px; float: right;">
 
 				We offer a veritable platform that deals with Used Bikes, Booking
 				and acts as a knowledge hub for everything related to two-wheelers.
@@ -53,7 +53,7 @@ th {
 
 		</article>
 		<article>
-			<h3>Benefits</h3>
+			<h4>Benefits</h4>
 			<ol>
 				<li>People who migrate can purchase used bikes for temporary
 					usage.</li>

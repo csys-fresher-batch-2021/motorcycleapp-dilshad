@@ -10,7 +10,7 @@ public class BikeSpecification {
 		super();
 		// Default constructor
 	}
-
+	
 	private String bikeManufacturer;
 
 	private String bikeModel;

@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.service.BikeManager;
+import in.dilshad.util.StringValidator;
 
 public class BikeValidator {
 
