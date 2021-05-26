@@ -48,7 +48,7 @@ public class SearchByPlateNoJsonServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String json = gson.toJson(bikeSpecification);
 		Logger.println("Approach #2: GSON JAR \n" + json);
-		
+
 		// Step 3: Write the json in response and flush it
 		try {
 			PrintWriter out = response.getWriter();

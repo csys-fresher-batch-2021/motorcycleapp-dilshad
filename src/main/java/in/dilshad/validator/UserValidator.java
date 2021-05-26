@@ -42,7 +42,6 @@ public class UserValidator {
 		boolean isValid = false;
 		if (StringValidator.isValidString(password))
 			isValid = password.equals("admin!");
-		isValid = true;
 		return isValid;
 	}
 }

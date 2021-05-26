@@ -37,15 +37,14 @@ img {
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<h2>Bike Details</h2><br>
+		<h2>Bike Details</h2>
+		<br>
 		<%
 		BikeSpecification bikeSpecification = (BikeSpecification) request.getAttribute("BIKE_SPECIFICATION");
-		
-		if(bikeSpecification == null){
+
+		if (bikeSpecification == null) {
 			out.println("No Reccords");
-		}
-		else{
-		
+		} else {
 		%>
 
 		<div class="card">
@@ -60,7 +59,6 @@ img {
 			<div class="container"
 				style="background-color: rgb(60, 179, 113, 0.3);">
 				<%
-				
 				out.println("<p> <strong>" + "Manufacturer: " + "</strong>" + bikeSpecification.getBikeManufacturer() + "</p>");
 				out.println("<p> <strong>" + "Model: " + "</strong>" + bikeSpecification.getBikeModel() + "</p>");
 				out.println("<p> <strong>" + "Color: " + "</strong>" + bikeSpecification.getBikeColor() + "</p>");
@@ -72,8 +70,10 @@ img {
 				out.println("<p> <strong>" + "VIN: " + "</strong>" + bikeSpecification.getEngineDetails().get("vin") + "</p>");
 				%>
 			</div>
-			
-			<%} %>
+
+			<%
+			}
+			%>
 		</div>
 	</main>
 </body>

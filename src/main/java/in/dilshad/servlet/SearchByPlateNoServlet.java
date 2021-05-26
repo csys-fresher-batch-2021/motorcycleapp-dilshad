@@ -38,9 +38,8 @@ public class SearchByPlateNoServlet extends HttpServlet {
 		// 1. Get Form Values
 		String plateNo = (request.getParameter("noPlate").trim());
 
-		
 		Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
-		BikeSpecification bikeSpecification  = bikeList.get(plateNo);
+		BikeSpecification bikeSpecification = bikeList.get(plateNo);
 		request.setAttribute("BIKE_SPECIFICATION", bikeSpecification);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("displayByPlateNo.jsp");
