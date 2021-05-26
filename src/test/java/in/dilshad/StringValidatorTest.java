@@ -1,24 +1,11 @@
 package in.dilshad;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.Test;
 
-import in.dilshad.model.BikeSpecification;
-import in.dilshad.service.BikeManager;
-import in.dilshad.validator.StringValidator;
+import in.dilshad.util.StringValidator;
 
 public class StringValidatorTest {
 

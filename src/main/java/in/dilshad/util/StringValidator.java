@@ -1,4 +1,4 @@
-package in.dilshad.validator;
+package in.dilshad.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
