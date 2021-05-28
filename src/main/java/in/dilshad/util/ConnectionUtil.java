@@ -24,10 +24,10 @@ public class ConnectionUtil {
 		// Step 2: Get the connection
 		Connection connection = null;
 		try {
-			String driverClass = " ";
-			String url = " ";
-			String username = " ";
-			String password = " ";
+			 String driverClass = "org.postgresql.Driver";
+			 String url = "jdbc:postgresql://projecttracker.ck1ayq0lncmp.ap-south-1.rds.amazonaws.com/motorcycleapp";
+			 String username = "prod_user";
+			 String password = "prod_user";
 
 			// Load the JDBC driver in memory
 			Class.forName(driverClass);

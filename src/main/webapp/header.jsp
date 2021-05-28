@@ -20,7 +20,7 @@ String loggedInUsername = (String)session.getAttribute("LOGGED_IN_USER");
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item active"><a class="nav-link"
 					href="index.jsp">Home <span class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="bikeList.jsp">Show
+				<li class="nav-item"><a class="nav-link" href="DisplayBikesServlet">Show
 						Room</a></li>
 
 				<% if (loggedInUsername != null){ %>

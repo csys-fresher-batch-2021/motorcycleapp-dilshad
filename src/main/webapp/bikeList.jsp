@@ -1,6 +1,6 @@
-<%@page import="in.dilshad.model.BikeDefault"%>
 <%@page import="in.dilshad.model.BikeSpecification"%>
-<%@page import="java.util.HashMap"%>
+<%@page import="java.util.*"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Map"%>
 <%@page import="in.dilshad.service.BikeManager"%>
@@ -35,6 +35,13 @@ tr:hover {
 
 		<br> <br>
 		<h4>List of Available bikes</h4>
+
+		<%
+		List<BikeSpecification> bikeList = (List<BikeSpecification>) request.getAttribute("BIKE_LIST");
+		if (bikeList == null) {
+			out.print("No records found");
+		} else {
+		%>
 		<table>
 			<caption>List of Bikes</caption>
 
@@ -52,9 +59,8 @@ tr:hover {
 			</thead>
 			<tbody>
 				<%
-				Map<String, BikeSpecification> bikeList = BikeManager.getAllBikes();
 				int i = 1;
-				for (BikeSpecification bike : bikeList.values()) {
+				for (BikeSpecification bike : bikeList) {
 					out.print("<tr>");
 					out.print("<td>" + i + "</td>");
 					out.print("<td>" + bike.getBikeManufacturer() + "</td>");
@@ -70,6 +76,9 @@ tr:hover {
 				%>
 			</tbody>
 		</table>
+		<%
+		}
+		%>
 	</main>
 
 </body>

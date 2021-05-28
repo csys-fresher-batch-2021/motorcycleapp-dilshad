@@ -5,43 +5,64 @@
 <head>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<style>
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	width: 40%;
+	border-radius: 5px;
+}
 
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+img {
+	border-radius: 5px 5px 0 0;
+}
+
+.container {
+	padding: 2px 16px;
+}
+
+.details {
+	font-size: 25px;
+	color: rgb(60, 30, 0);
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Bike Details</title>
 </head>
 <body>
+	<jsp:include page="header.jsp"></jsp:include>
+	<main class="container-fluid">
+		<br>
+		<br>
+		<form onsubmit="getAllTasks()">
+			<label for="plateNo">Enter plateNo :</label> <input type="text"
+				required="required" id="plateNo" name="plateNo">
+			<button>Search</button>
+		</form>
+		<br>
+		<div class="card">
+			<p id="noPlate"></p>
+			<img id="img"
+				src="https://www.drivespark.com/bikes-photos/models/450x350/ct100_1515499232.jpg/3/x.pagespeed.ic.367gLOJb09.jpg"
+				alt="Bike image" style="width: 100%">
 
-	<form onsubmit="getAllTasks()">
+			<div class="container"
+				style="background-color: rgb(120, 279, 113, 0.3);">
+				<strong><article id="details" class="details"></article></strong>
 
-		<label for="plateNo">Enter platNo :</label> <input type="text"
-			required="required" id="plateNo" name="plateNo">
-
-
-		<button>Search</button>
-	</form>
-
-	<table>
-		<caption>Bike Details</caption>
-		<thead>
-			<tr>
-				<th scope="col">Manufacturer</th>
-				<th scope="col">Model</th>
-				<th scope="col">Color</th>
-				<th scope="col">Price</th>
-				<th scope="col">Km</th>
-				<th scope="col">Year</th>
-			</tr>
-		</thead>
-		<tbody id="task-tbl">
-
-		</tbody>
-	</table>
-	<script>
+			</div>
+		</div>
+		<script>
 
 function getAllTasks(){
 	event.preventDefault();
 	console.log("Fetching all tasks ");
-	let plateNo = document.querySelector("#plateNo").value;//"KA67A0000"
+	let plateNo = document.querySelector("#plateNo").value;
 	let url = "SearchByPlateNoJsonServlet?noPlate=" + plateNo;
 	fetch(url).then(res=> res.json()).then(res=>{
 		let bike = res;
@@ -49,25 +70,16 @@ function getAllTasks(){
 		//console.log(bikes);
 		
 		let content = "";
-		
-			content += "<tr><td>" + bike.bikeManufacturer + "</td><td>"+ bike.bikeModel + "</td><td>" + bike.bikeColor + "</td><td>" + bike.bikePrice +"</td><td>" + bike.km +"</td><td>" + bike.manufactureYear + "</td></tr>";
-			console.log(bike.bikeManufacturer);
-			console.log(bike.bikeModel);
-			console.log(bike.bikeColor);
-			console.log(bike.bikePrice);
-			console.log(bike.km);
-			console.log(bike.manufactureYear);
-		
+		content += "<br><p> Bike Manufacturer: " + bike.bikeManufacturer + "</p><p> Bike Model: "+ bike.bikeModel + "</p><p>Bike Color: " + bike.bikeColor + "</p><p>Bike Price: " + bike.bikePrice +"</p><p>Odometer reading: " + bike.km +"</p><p> Manufacture Year: " + bike.manufactureYear + "</p><p> Status: " + bike.status + "</p><p>Fuel Type: " + bike.engineDetails.fuelType + "</p><p>VIN: " + bike.engineDetails.vin +"</p>"; 
 		console.log(content);
-		
-		document.querySelector("#task-tbl").innerHTML= content;
+		let header = "<h5> Plate Number: "+plateNo;
+		document.querySelector("#noPlate").innerHTML = header;
+		document.querySelector("#details").innerHTML= content;
 		
 	})
 	
 }
-
-
-
 </script>
+	</main>
 </body>
 </html>
