@@ -47,7 +47,7 @@ public class AddBikeServlet extends HttpServlet {
 			newBike.setManufactureYear(Integer.parseInt(request.getParameter("manufactureYear").trim()));
 			newBike.setBikePrice(Float.parseFloat(request.getParameter("price").trim()));
 			BikeManager.addBike(newBike);
-			response.sendRedirect("bikeList.jsp?infoMessage=" + infoMessage);
+			response.sendRedirect("DisplayBikesServlet?infoMessage=" + infoMessage);
 
 		} catch (Exception e) {
 			response.sendRedirect("addBike.jsp?errorMessage=" + e.getMessage());

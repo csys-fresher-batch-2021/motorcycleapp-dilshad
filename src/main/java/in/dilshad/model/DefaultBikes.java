@@ -1,14 +1,17 @@
+/*
 package in.dilshad.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
-public class BikeDefault {
-	private BikeDefault() {
+import in.dilshad.dao.BikeDAO;
+import in.dilshad.service.BikeManager;
+
+public class DefaultBikes {
+	private DefaultBikes() {
 
 	}
 
-	private static final Map<String, BikeSpecification> DefaultBikeMap = new HashMap<>();
+		private static final Map<String, BikeSpecification> DefaultBikeMap = new HashMap<>();
 	// Plate number - as key value
 	private static final String FUEL = "fuelType";
 	private static final String VIN = "vin";
@@ -90,12 +93,19 @@ public class BikeDefault {
 
 	}
 
-	/**
-	 * Returns the Default bikes.
-	 * 
-	 * @return
-	 */
-	public static Map<String, BikeSpecification> getDefaultBikes() {
-		return DefaultBikeMap;
+	public static void main(String[] args) {
+		Map<String, BikeSpecification> bikeList = DefaultBikeMap;
+		for (BikeSpecification bike : bikeList.values()) {
+			BikeDAO.addBike(bike);
+			System.out.println(bike);
+		}
 	}
 }
+
+public static void main(String[] args) {
+	List<BikeSpecification> bikeList = BikeManager.displayBikes();
+	for(BikeSpecification bike : bikeList) {
+		System.out.println(bike);
+	}
+}
+}*/
