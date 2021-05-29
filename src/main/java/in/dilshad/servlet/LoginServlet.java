@@ -1,6 +1,7 @@
 package in.dilshad.servlet;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,9 +40,8 @@ public class LoginServlet extends HttpServlet {
 			UserValidator.isValidCredentials(userName, password);
 			HttpSession session = request.getSession();
 			session.setAttribute("LOGGED_IN_USER", userName);
-			System.out.println(session.getAttribute("LOGGED_IN_USER"));
 			response.sendRedirect("index.jsp?infoMessage=" + "Succesfully Logged in");
-		} catch (IllegalArgumentException e) {
+		} catch (Exception e) {
 			response.sendRedirect("loginPage.jsp?errorMessage=" + e.getMessage());
 		}
 

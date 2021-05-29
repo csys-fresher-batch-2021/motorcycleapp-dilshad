@@ -37,7 +37,6 @@ public class RemoveBikeServlet extends HttpServlet {
 			response.sendRedirect("DisplayBikesServlet");
 		} catch (Exception e) {
 			response.sendRedirect("DisplayBikesServlet?errorMessage=" + e.getMessage());
-			e.printStackTrace();
 		}
 
 	}

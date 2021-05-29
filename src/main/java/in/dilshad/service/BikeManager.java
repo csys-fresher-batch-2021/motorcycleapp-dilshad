@@ -3,6 +3,7 @@ package in.dilshad.service;
 import java.util.List;
 
 import in.dilshad.dao.BikeDAO;
+import in.dilshad.exception.ServiceException;
 import in.dilshad.exception.ValidationException;
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.validator.BikeValidator;
@@ -21,7 +22,7 @@ public class BikeManager {
 		try {
 			return BikeDAO.getAllBikes();
 		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage());
+			throw new ServiceException(e.getMessage());
 		}
 	}
 
@@ -36,7 +37,7 @@ public class BikeManager {
 			BikeValidator.validateBikeSpecification(newBike);
 			BikeDAO.addBike(newBike);
 		} catch (Exception e) {
-			throw new IllegalArgumentException(e.getMessage());
+			throw new ServiceException(e.getMessage());
 		}
 	}
 
@@ -57,7 +58,7 @@ public class BikeManager {
 				throw new ValidationException("Enter valid Plate number to fetch bike details");
 			}
 		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage());
+			throw new ServiceException(e.getMessage());
 		}
 		return bikeSpecification;
 	}
@@ -77,7 +78,7 @@ public class BikeManager {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException(e.getMessage());
+			throw new ServiceException(e.getMessage());
 		}
 
 	}
