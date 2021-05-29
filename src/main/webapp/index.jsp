@@ -18,7 +18,7 @@ th {
 }
 </style>
 
-<title>Motorcycle</title>
+<title>Motorcycle app</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -27,13 +27,7 @@ th {
 			<h1 style="text-align: center; color: Indigo">Welcome to
 				Motorcycle Show Room</h1>
 		</header>
-		<ol>
-			<li><a href="addBike.jsp"><strong>Add bike</strong> </a></li>
-			<li><a href="DisplayBikesServlet"><strong>Show
-						Currently available bikes</strong> </a></li>
-			<li><a href="displayByPlateNoJSON.jsp"><strong>Search
-						Bike by plate Number (Using Json)</strong> </a></li>
-		</ol>
+
 		<article class="column">
 			<h3>About us</h3>
 			<p>
@@ -76,8 +70,6 @@ th {
 		<footer style="background-color: SlateBlue;">
 			<p>Make Hay While the Sun Shines.</p>
 		</footer>
-
-
 	</main>
 </body>
 </html>

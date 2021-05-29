@@ -1,10 +1,12 @@
-/*
-package in.dilshad.model;
+/* To load some sample bikes into the database instantly when table is dropped 
+or all bikes are removed. */
 
-import java.util.List;
+/*package in.dilshad.model;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import in.dilshad.dao.BikeDAO;
-import in.dilshad.service.BikeManager;
 
 public class DefaultBikes {
 	private DefaultBikes() {
@@ -86,6 +88,7 @@ public class DefaultBikes {
 		engine4.put(PLATE, "KL67A1143");
 		bike4.setEngineDetails(engine4);
 
+		//Plate number as a key element.
 		DefaultBikeMap.put(engine1.get(PLATE), bike1);
 		DefaultBikeMap.put(engine2.get(PLATE), bike2);
 		DefaultBikeMap.put(engine3.get(PLATE), bike3);
@@ -101,11 +104,5 @@ public class DefaultBikes {
 		}
 	}
 }
+*/
 
-public static void main(String[] args) {
-	List<BikeSpecification> bikeList = BikeManager.displayBikes();
-	for(BikeSpecification bike : bikeList) {
-		System.out.println(bike);
-	}
-}
-}*/

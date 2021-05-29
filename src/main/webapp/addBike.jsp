@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Add new bikes</title>
+<title>Add new bike</title>
 <style>
 div .form {
 	margin-bottom: 50px;

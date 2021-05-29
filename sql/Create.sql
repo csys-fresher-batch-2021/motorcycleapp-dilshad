@@ -1,15 +1,13 @@
-CREATE TABLE Bike_Specification (
-	Bike_Manufacturer VARCHAR(20) NOT NULL,
-	Bike_Model VARCHAR(20) NOT NULL,
-	Bike_color VARCHAR(20) NOT NULL,
-	Bike_Price FLOAT NOT NULL,
-	Odometer_Reading INTEGER NOT NULL,
-	Manufacture_Year INTEGER NOT NULL,
-	Status BOOLEAN NOT NULL,
-	Fuel_Type VARCHAR(10)NOT NULL,
-	VIN CHAR(17) NOT NULL UNIQUE,	
-	Plate_No CHAR(11) NOT NULL PRIMARY KEY
+CREATE TABLE bike_specification (
+	bike_manufacturer VARCHAR(20) NOT NULL,
+	bike_model VARCHAR(20) NOT NULL,
+	bike_color VARCHAR(20) NOT NULL,
+	bike_price FLOAT NOT NULL,
+	odometer_reading INTEGER NOT NULL,
+	manufacture_year INTEGER NOT NULL,
+	status BOOLEAN NOT NULL,
+	fuel_type VARCHAR(10)NOT NULL,
+	vin CHAR(17) NOT NULL UNIQUE,	
+	plate_no CHAR(11) NOT NULL PRIMARY KEY
 );
-
-DROP TABLE Bike_Specification
-SELECT * FROM Bike_Specification
+	
