@@ -1,7 +1,6 @@
 package in.dilshad.servlet;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
