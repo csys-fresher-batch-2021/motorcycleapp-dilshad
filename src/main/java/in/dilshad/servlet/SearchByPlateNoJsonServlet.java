@@ -49,7 +49,7 @@ public class SearchByPlateNoJsonServlet extends HttpServlet {
 			out.print(json);
 			out.flush();
 		} catch (IOException e) {
-			// Sonar cloud tells to put try catch block
+			e.printStackTrace();
 		}
 	}
 

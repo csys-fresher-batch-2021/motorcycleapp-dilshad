@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 	 *      response)
 	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String userName = request.getParameter("uname");
 		String password = request.getParameter("pass");
@@ -39,8 +39,8 @@ public class LoginServlet extends HttpServlet {
 			UserValidator.isValidCredentials(userName, password);
 			HttpSession session = request.getSession();
 			session.setAttribute("LOGGED_IN_USER", userName);
-			response.sendRedirect("index.jsp");
-		} catch (IllegalArgumentException e) {
+			response.sendRedirect("index.jsp?infoMessage=" + "Succesfully Logged in");
+		} catch (Exception e) {
 			response.sendRedirect("loginPage.jsp?errorMessage=" + e.getMessage());
 		}
 

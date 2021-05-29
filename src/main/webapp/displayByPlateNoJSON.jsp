@@ -37,8 +37,7 @@ img {
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<br>
-		<br>
+		<br> <br>
 		<form onsubmit="getAllTasks()">
 			<label for="plateNo">Enter plateNo :</label> <input type="text"
 				required="required" id="plateNo" name="plateNo">
@@ -67,10 +66,10 @@ function getAllTasks(){
 	fetch(url).then(res=> res.json()).then(res=>{
 		let bike = res;
 		console.log("Got response from servlet");
-		//console.log(bikes);
 		
 		let content = "";
 		content += "<br><p> Bike Manufacturer: " + bike.bikeManufacturer + "</p><p> Bike Model: "+ bike.bikeModel + "</p><p>Bike Color: " + bike.bikeColor + "</p><p>Bike Price: " + bike.bikePrice +"</p><p>Odometer reading: " + bike.km +"</p><p> Manufacture Year: " + bike.manufactureYear + "</p><p> Status: " + bike.status + "</p><p>Fuel Type: " + bike.engineDetails.fuelType + "</p><p>VIN: " + bike.engineDetails.vin +"</p>"; 
+		console.log(bike);
 		console.log(content);
 		let header = "<h5> Plate Number: "+plateNo;
 		document.querySelector("#noPlate").innerHTML = header;

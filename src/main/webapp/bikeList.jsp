@@ -3,11 +3,20 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Map"%>
+
+<%@page import="javax.servlet.ServletException"%>
+<%@page import="javax.servlet.annotation.WebServlet"%>
+<%@page import="javax.servlet.http.HttpServlet"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
+<%@page import="javax.servlet.http.HttpServletResponse"%>
+<%@page import="javax.servlet.http.HttpSession"%>
+
+
 <%@page import="in.dilshad.service.BikeManager"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html lang="em">
+<html lang="en">
 <head>
 <style>
 table {
@@ -26,7 +35,7 @@ tr:hover {
 }
 </style>
 <meta charset="ISO-8859-1">
-<title>Bike list</title>
+<title>Available bikes</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -78,7 +87,27 @@ tr:hover {
 		</table>
 		<%
 		}
+
+		HttpSession session1 = request.getSession();
+		String user = (String) session1.getAttribute("LOGGED_IN_USER");
+		if (user != null) {
+		out.println("Being an ADMIN, you have the permission to remove the bike from the database");
 		%>
+		<br>
+		<form action="RemoveBikeServlet">
+			<label for="noPlate"><strong>Enter Plate no. of bike
+					to be removed: </strong></label> <input type="text" id="noPlate" name="noPlate"
+				required="required" autofocus="autofocus">
+			<button class="btn btn-danger">Remove</button>
+			<br> <br> <br><jsp:include page="message.jsp"></jsp:include><br>
+		</form>
+		<%
+		}
+		%>
+
+
+
+
 	</main>
 
 </body>

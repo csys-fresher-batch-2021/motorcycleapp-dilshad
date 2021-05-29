@@ -156,12 +156,6 @@ public class BikeValidator {
 		boolean isValid = false;
 		if (StringValidator.isValidString(vin))
 			isValid = Pattern.matches("[A-Z0-9]{17}", vin);
-
-//		if (StringValidator.isValidString(vin.trim())) {
-//			Pattern pattern = Pattern.compile("[A-Z0-9]{17}");
-//			Matcher matcher = pattern.matcher(vin);
-//			isValid = matcher.find();
-//		}
 		return isValid;
 	}
 

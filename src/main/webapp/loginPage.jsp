@@ -11,7 +11,7 @@
 	<main class="container-fluid">
 		<h2>Login</h2>
 		<br>
-		<form action="LoginServlet">
+		<form action="LoginServlet" method="post">
 			<label for="uname">Admin ID:</label> <input type="text" id="uname"
 				name="uname" required="required" autofocus="autofocus"
 				placeholder="Enter user name here"> <br> <em>Default
@@ -20,7 +20,7 @@
 				required="required" placeholder="Enter here"><br> <em>Default
 				Access Key: admin!</em><br> <br>
 			<button class="btn btn-secondary">Enter</button>
-
+			<br> <br><jsp:include page="message.jsp"></jsp:include>
 		</form>
 	</main>
 </body>

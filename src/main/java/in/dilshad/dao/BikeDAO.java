@@ -34,7 +34,7 @@ public class BikeDAO {
 			connection = ConnectionUtil.getConnection();
 
 			// Sql command
-			String sql = "insert into Bike_Specification(Bike_Manufacturer, Bike_Model, Bike_color,  Bike_Price, Odometer_Reading, Manufacture_Year, Status, Fuel_Type, VIN, Plate_No ) values (?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into bike_specification(bike_manufacturer, bike_model, bike_color,  bike_price, odometer_reading, manufacture_year, status, fuel_type, vin, plate_no ) values (?,?,?,?,?,?,?,?,?,?)";
 
 			// Execution Step
 			pst = connection.prepareStatement(sql);
@@ -52,7 +52,6 @@ public class BikeDAO {
 			pst.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DBException("Unable to Add Details");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -73,30 +72,29 @@ public class BikeDAO {
 			connection = ConnectionUtil.getConnection();
 
 			// Sql command
-			String sql = "SELECT * FROM Bike_Specification";
+			String sql = "SELECT * FROM bike_specification";
 			// Execution Step
 			pst = connection.prepareStatement(sql);
 			ResultSet result = pst.executeQuery();
 
 			while (result.next()) {
 				BikeSpecification bikeSpecification = new BikeSpecification();
-				bikeSpecification.setBikeManufacturer(result.getString("Bike_Manufacturer"));
-				bikeSpecification.setBikeModel(result.getString("Bike_Model"));
-				bikeSpecification.setBikeColor(result.getString("Bike_color"));
-				bikeSpecification.setBikePrice(result.getFloat("Bike_Price"));
-				bikeSpecification.setKm(result.getInt("Odometer_Reading"));
-				bikeSpecification.setManufactureYear(result.getInt("Manufacture_Year"));
-				bikeSpecification.setStatus(result.getBoolean("Status"));
+				bikeSpecification.setBikeManufacturer(result.getString("bike_manufacturer"));
+				bikeSpecification.setBikeModel(result.getString("bike_model"));
+				bikeSpecification.setBikeColor(result.getString("bike_color"));
+				bikeSpecification.setBikePrice(result.getFloat("bike_price"));
+				bikeSpecification.setKm(result.getInt("odometer_reading"));
+				bikeSpecification.setManufactureYear(result.getInt("manufacture_year"));
+				bikeSpecification.setStatus(result.getBoolean("status"));
 				Map<String, String> engineDetails = new HashMap<>();
-				engineDetails.put("fuelType", result.getString("Fuel_Type"));
-				engineDetails.put("vin", result.getString("VIN"));
-				engineDetails.put("noPlate", result.getString("Plate_No"));
+				engineDetails.put("fuelType", result.getString("fuel_type"));
+				engineDetails.put("vin", result.getString("vin"));
+				engineDetails.put("noPlate", result.getString("plate_no"));
 				bikeSpecification.setEngineDetails(engineDetails);
 				bikeList.add(bikeSpecification);
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DBException("Unable to Fetch details from database table");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -125,25 +123,50 @@ public class BikeDAO {
 
 			result = pst.executeQuery();
 			while (result.next()) {
-				bikeSpecification.setBikeManufacturer(result.getString("Bike_Manufacturer"));
-				bikeSpecification.setBikeModel(result.getString("Bike_Model"));
-				bikeSpecification.setBikeColor(result.getString("Bike_color"));
-				bikeSpecification.setBikePrice(result.getFloat("Bike_Price"));
-				bikeSpecification.setKm(result.getInt("Odometer_Reading"));
-				bikeSpecification.setManufactureYear(result.getInt("Manufacture_Year"));
-				bikeSpecification.setStatus(result.getBoolean("Status"));
+				bikeSpecification.setBikeManufacturer(result.getString("bike_manufacturer"));
+				bikeSpecification.setBikeModel(result.getString("bike_model"));
+				bikeSpecification.setBikeColor(result.getString("bike_color"));
+				bikeSpecification.setBikePrice(result.getFloat("bike_price"));
+				bikeSpecification.setKm(result.getInt("odometer_reading"));
+				bikeSpecification.setManufactureYear(result.getInt("manufacture_year"));
+				bikeSpecification.setStatus(result.getBoolean("status"));
 				Map<String, String> engineDetails = new HashMap<>();
-				engineDetails.put("fuelType", result.getString("Fuel_Type"));
-				engineDetails.put("vin", result.getString("VIN"));
-				engineDetails.put("noPlate", result.getString("Plate_No"));
+				engineDetails.put("fuelType", result.getString("fuel_type"));
+				engineDetails.put("vin", result.getString("vin"));
+				engineDetails.put("noPlate", result.getString("plate_no"));
 				bikeSpecification.setEngineDetails(engineDetails);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new DBException("Unable to Fetch bike for Plate no." + plateNo);
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
 		}
 		return bikeSpecification;
+	}
+
+	/**
+	 * Plate number is passes as argument. Removes corresponding bike record from
+	 * database.
+	 * 
+	 * @param noPlate
+	 */
+	public static void removeBike(String noPlate) {
+		Connection connection = null;
+		PreparedStatement pst = null;
+		try {
+			connection = ConnectionUtil.getConnection();
+
+			String sql = "DELETE FROM bike_specification WHERE plate_no = ?";
+
+			pst = connection.prepareStatement(sql);
+			pst.setString(1, noPlate);
+			pst.executeUpdate();
+
+		} catch (Exception e) {
+			throw new DBException("Could no remove the bike based on the plate number given");
+		} finally {
+			ConnectionUtil.closeConnection(pst, connection);
+
+		}
 	}
 }
