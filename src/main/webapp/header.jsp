@@ -22,14 +22,17 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 					href="index.jsp">Home <span class="sr-only">(current)</span></a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="DisplayBikesServlet">Show Room</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="displayByPlateNoJSON.jsp">Search bike</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="findBikeByModel.jsp">Sort bikes</a></li>
 
 				<%
 				if (loggedInUsername != null) {
 				%>
 				<li class="nav-item"><a class="nav-link" href="addBike.jsp">Add
 						bike</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="displayByPlateNoJSON.jsp">Search</a></li>
+
 				<li class="nav-item"><a class="nav-link"
 					href="DisplayBikesServlet">Remove/Update</a></li>
 				<%

@@ -2,6 +2,7 @@ package in.dilshad.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,16 +17,16 @@ import in.dilshad.service.BikeManager;
 import in.dilshad.util.Logger;
 
 /**
- * Servlet implementation class SearchByPlateNoJsonServlet
+ * Servlet implementation class FindBikeByModelServlet
  */
-@WebServlet("/SearchByPlateNoJsonServlet")
-public class SearchByPlateNoJsonServlet extends HttpServlet {
+@WebServlet("/FindBikeByModelServlet")
+public class FindBikeByModelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SearchByPlateNoJsonServlet() {
+	public FindBikeByModelServlet() {
 		super();
 	}
 
@@ -36,21 +37,19 @@ public class SearchByPlateNoJsonServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 1. Get Form Values
-		String plateNo = request.getParameter("noPlate");
-		BikeSpecification bikeSpecification = BikeManager.searchByPlateNo(plateNo);
-		// Step 2: Convert to Json string
+		String manufacturer = request.getParameter("manufacturer");
+		String model = request.getParameter("model");
+		List<BikeSpecification> bikeList = BikeManager.findBikeByModel(manufacturer, model);
 		Gson gson = new Gson();
-		String json = gson.toJson(bikeSpecification);
-		Logger.println("Approach #2: GSON JAR \n" + json);
-		// Step 3: Write the json in response and flush it
+		String json = gson.toJson(bikeList);
+		Logger.println("GSON JAR \n" + json);
 		try {
 			PrintWriter out = response.getWriter();
 			out.print(json);
 			out.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
 	}
 
+}
 }

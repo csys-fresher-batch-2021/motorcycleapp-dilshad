@@ -6,6 +6,7 @@ import in.dilshad.dao.BikeDAO;
 import in.dilshad.exception.ServiceException;
 import in.dilshad.exception.ValidationException;
 import in.dilshad.model.BikeSpecification;
+import in.dilshad.util.StringValidator;
 import in.dilshad.validator.BikeValidator;
 
 public class BikeManager {
@@ -81,15 +82,45 @@ public class BikeManager {
 			throw new ServiceException(e.getMessage());
 		}
 	}
-	
+
+	/**
+	 * Validates plate no, odometer reading value and price and hand over to the DAO
+	 * for updating the record with plate no as the key.
+	 * 
+	 * @param plateNo
+	 * @param km
+	 * @param price
+	 */
 	public static void updateBike(String plateNo, int km, int price) {
 		try {
-			if(BikeValidator.isValidPlateNumber(plateNo) && BikeValidator.isValidKm(km) && BikeValidator.isValidBikePrice(price)) 
+			if (BikeValidator.isValidPlateNumber(plateNo) && BikeValidator.isValidKm(km)
+					&& BikeValidator.isValidBikePrice(price))
 				BikeDAO.updateBike(plateNo, km, price);
 			else
 				throw new ValidationException("Enter valid details");
-			}catch(Exception e) {
-				throw new ServiceException(e.getMessage());
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+
+	/**
+	 * Accepts Bike manufacturer and Bike model and hand over to DAO.
+	 * Validation: Only presence of special character is found and exception is thrown
+	 * User can fill either or both fields based their needs.
+	 * @param manufacturer
+	 * @param model
+	 * @return
+	 */
+	public static List<BikeSpecification> findBikeByModel(String manufacturer, String model) {
+		try {
+			if (!StringValidator.isValidString(manufacturer) && !StringValidator.isValidString(model))
+				throw new ValidationException("Enter atleast one field to get bikes");
+			else if (StringValidator.isSpecialCharPresent(manufacturer) || StringValidator.isSpecialCharPresent(model))
+				throw new ValidationException("Special characters - not required for searching");
+			else
+				return BikeDAO.findBikeByModel(manufacturer, model);
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage());
 		}
 	}
 }

@@ -30,7 +30,7 @@ public class UpdateBikeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			String noPlate = request.getParameter("noPlate");
+			String noPlate = (request.getParameter("noPlate").trim());
 			Integer km = Integer.parseInt(request.getParameter("km"));
 			Integer price = Integer.parseInt(request.getParameter("price"));
 			BikeManager.updateBike(noPlate, km, price);
