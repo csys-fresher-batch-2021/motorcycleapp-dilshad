@@ -232,7 +232,7 @@ public class BikeDAO {
 			}
 
 		}catch (Exception e) {
-			e.printStackTrace();
+
 				throw new DBException("Could not fetch bikes based on model");
 		}
 		finally {
