@@ -80,6 +80,16 @@ public class BikeManager {
 			e.printStackTrace();
 			throw new ServiceException(e.getMessage());
 		}
-
+	}
+	
+	public static void updateBike(String plateNo, int km, int price) {
+		try {
+			if(BikeValidator.isValidPlateNumber(plateNo) && BikeValidator.isValidKm(km) && BikeValidator.isValidBikePrice(price)) 
+				BikeDAO.updateBike(plateNo, km, price);
+			else
+				throw new ValidationException("Enter valid details");
+			}catch(Exception e) {
+				throw new ServiceException(e.getMessage());
+		}
 	}
 }

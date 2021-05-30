@@ -34,7 +34,8 @@ public class RemoveBikeServlet extends HttpServlet {
 		String noPlate = request.getParameter("noPlate").trim();
 		try {
 			BikeManager.removeBike(noPlate);
-			response.sendRedirect("DisplayBikesServlet");
+	
+			response.sendRedirect("DisplayBikesServlet?infoMessage=" + "Removed bike record successfully");
 		} catch (Exception e) {
 			response.sendRedirect("DisplayBikesServlet?errorMessage=" + e.getMessage());
 		}
