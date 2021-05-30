@@ -162,7 +162,7 @@ public class BikeDAO {
 			pst.setString(1, noPlate);
 			int status = pst.executeUpdate();
 			if (status == 0)
-				throw new DBException("Enter Plate number of existing bikes in the showroom");
+				throw new DBException("No bikes found for the plate no:" + noPlate);
 		} catch (Exception e) {
 			throw new DBException("Could not remove the bike based on the plate number given");
 		} finally {
@@ -187,8 +187,57 @@ public class BikeDAO {
 			throw new DBException("Could not update the bike based on the plate number given");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
-
 		}
+	}
 
+	/**
+	 * Accepts Bike manufacture and Bike model as input and returns a list of bikes which
+	 * partially resembles the input keyword.
+	 * @param manufacturer
+	 * @param model
+	 * @return
+	 */
+	public static List<BikeSpecification> findBikeByModel(String manufacturer, String model) {
+		final List<BikeSpecification> bikeList = new ArrayList<>();
+
+
+		Connection connection = null;
+		PreparedStatement pst = null;
+		ResultSet result = null;
+
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql = "SELECT * FROM bike_specification WHERE bike_manufacturer ILIKE  ? OR bike_model ILIKE ?;";
+			pst = connection.prepareStatement(sql);
+			pst.setString(1, "%" + manufacturer + "%");
+			pst.setString(2, "%" + model + "%");
+			
+			result=pst.executeQuery();
+			
+			while (result.next()) {
+				BikeSpecification bikeSpecification = new BikeSpecification();
+				bikeSpecification.setBikeManufacturer(result.getString("bike_manufacturer"));
+				bikeSpecification.setBikeModel(result.getString("bike_model"));
+				bikeSpecification.setBikeColor(result.getString("bike_color"));
+				bikeSpecification.setBikePrice(result.getFloat("bike_price"));
+				bikeSpecification.setKm(result.getInt("odometer_reading"));
+				bikeSpecification.setManufactureYear(result.getInt("manufacture_year"));
+				bikeSpecification.setStatus(result.getBoolean("status"));
+				Map<String, String> engineDetails = new HashMap<>();
+				engineDetails.put("fuelType", result.getString("fuel_type"));
+				engineDetails.put("vin", result.getString("vin"));
+				engineDetails.put("noPlate", result.getString("plate_no"));
+				bikeSpecification.setEngineDetails(engineDetails);
+				bikeList.add(bikeSpecification);
+			}
+
+		}catch (Exception e) {
+			e.printStackTrace();
+				throw new DBException("Could not fetch bikes based on model");
+		}
+		finally {
+			ConnectionUtil.closeConnection(result, pst, connection);
+		}
+		return bikeList;
 	}
 }

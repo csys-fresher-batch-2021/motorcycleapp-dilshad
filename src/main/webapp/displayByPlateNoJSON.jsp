@@ -38,7 +38,7 @@ img {
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<br> <br>
-		<form onsubmit="getAllTasks()">
+		<form onsubmit="getBike()">
 			<label for="plateNo">Enter plateNo :</label> <input type="text"
 				required="required" id="plateNo" name="plateNo">
 			<button>Search</button>
@@ -58,9 +58,9 @@ img {
 		</div>
 		<script>
 
-function getAllTasks(){
+function getBike(){
 	event.preventDefault();
-	console.log("Fetching all tasks ");
+	console.log("Fetching bike ");
 	let plateNo = document.querySelector("#plateNo").value;
 	let url = "SearchByPlateNoJsonServlet?noPlate=" + plateNo;
 	fetch(url).then(res=> res.json()).then(res=>{
@@ -68,11 +68,14 @@ function getAllTasks(){
 		console.log("Got response from servlet");
 		
 		let content = "";
-		content += "<br><p> Bike Manufacturer: " + bike.bikeManufacturer + "</p><p> Bike Model: "+ bike.bikeModel + "</p><p>Bike Color: " + bike.bikeColor + "</p><p>Bike Price: " + bike.bikePrice +"</p><p>Odometer reading: " + bike.km +"</p><p> Manufacture Year: " + bike.manufactureYear + "</p><p> Status: " + bike.status + "</p><p>Fuel Type: " + bike.engineDetails.fuelType + "</p><p>VIN: " + bike.engineDetails.vin +"</p>"; 
-		console.log(bike);
+		console.log(bike.status);
+		let status = "Not Verified"
+		if(bike.status){
+			status = "Verified";
+		}
+		console.log(status);
+		content += "<br><p> Bike Manufacturer: " + bike.bikeManufacturer + "</p><p> Bike Model: "+ bike.bikeModel + "</p><p>Bike Color: " + bike.bikeColor + "</p><p>Bike Price: " + bike.bikePrice +"</p><p>Odometer reading: " + bike.km +"</p><p> Manufacture Year: " + bike.manufactureYear + "</p><p> Status: " + status + "</p><p>Fuel Type: " + bike.engineDetails.fuelType + "</p><p>VIN: " + bike.engineDetails.vin +"</p>"; 
 		console.log(content);
-		let header = "<h5> Plate Number: "+plateNo;
-		document.querySelector("#noPlate").innerHTML = header;
 		document.querySelector("#details").innerHTML= content;
 		
 	})
