@@ -128,6 +128,5 @@ tr:hover {
 		}
 		%>
 	</main>
-
 </body>
 </html>

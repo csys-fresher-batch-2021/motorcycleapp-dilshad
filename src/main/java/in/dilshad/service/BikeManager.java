@@ -85,7 +85,7 @@ public class BikeManager {
 	public static void updateBike(String plateNo, int km, int price) {
 		try {
 			if(BikeValidator.isValidPlateNumber(plateNo) && BikeValidator.isValidKm(km) && BikeValidator.isValidBikePrice(price)) 
-				BikeDAO.UpdateBike(plateNo, km, price);
+				BikeDAO.updateBike(plateNo, km, price);
 			else
 				throw new ValidationException("Enter valid details");
 			}catch(Exception e) {

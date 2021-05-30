@@ -170,7 +170,7 @@ public class BikeDAO {
 		}
 	}
 
-	public static void UpdateBike(String noPlate, int km, int price) {
+	public static void updateBike(String noPlate, int km, int price) {
 		Connection connection = null;
 		PreparedStatement pst = null;
 		try {
