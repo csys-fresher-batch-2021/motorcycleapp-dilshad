@@ -52,6 +52,7 @@ public class BikeDAO {
 			pst.executeUpdate();
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new DBException("Unable to Add Details");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -160,13 +161,35 @@ public class BikeDAO {
 
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, noPlate);
-			pst.executeUpdate();
-
+			int status = pst.executeUpdate();
+			if (status == 0)
+				throw new DBException("Enter Plate number of existing bikes in the showroom");
 		} catch (Exception e) {
-			throw new DBException("Could no remove the bike based on the plate number given");
+			throw new DBException("Could not remove the bike based on the plate number given");
+		} finally {
+			ConnectionUtil.closeConnection(pst, connection);
+		}
+	}
+
+	public static void UpdateBike(String noPlate, int km, int price) {
+		Connection connection = null;
+		PreparedStatement pst = null;
+		try {
+			connection = ConnectionUtil.getConnection();
+
+			String sql = "UPDATE  bike_specification SET odometer_reading = ?, bike_price = ? WHERE plate_no = ?";
+
+			pst = connection.prepareStatement(sql);
+			pst.setInt(1, km);
+			pst.setInt(2, price);
+			pst.setString(3, noPlate);
+			pst.executeUpdate();
+		} catch (Exception e) {
+			throw new DBException("Could not update the bike based on the plate number given");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
 
 		}
+
 	}
 }

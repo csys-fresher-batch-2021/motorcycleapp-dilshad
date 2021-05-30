@@ -31,7 +31,7 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 				<li class="nav-item"><a class="nav-link"
 					href="displayByPlateNoJSON.jsp">Search</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="DisplayBikesServlet">Remove</a></li>
+					href="DisplayBikesServlet">Remove/Update</a></li>
 				<%
 				}
 				%>
