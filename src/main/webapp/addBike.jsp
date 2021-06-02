@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Add new bike</title>
+<title>Add bike</title>
 <style>
 div .form {
 	margin-bottom: 50px;
@@ -26,33 +26,35 @@ label {
 			<div class="form">
 				<label for="bikeManufacturer"><strong>Enter Bike
 						Manufacturer:</strong></label> <input type="text" id="bikeManufacturer"
-					name="bikeManufacturer" required autofocus
-					placeholder="Enter Bike Manufacturer name"> <br>
+					name="bikeManufacturer" minlength="2" maxlength="20" required
+					autofocus placeholder="Enter Bike Manufacturer name"> <br>
 			</div>
 
 			<div class="form">
 				<label for="bikeModel"><strong>Bike Model:</strong></label> <input
-					type="text" id="bikeModel" name="bikeModel" required
-					placeholder="Enter Bike model here"> <br>
+					type="text" id="bikeModel" name="bikeModel" minlength="2"
+					maxlength="20" required placeholder="Enter Bike model here">
+				<br>
 			</div>
 
 			<div class="form">
 				<label for="bikeColor"><strong>Bike Color:</strong></label> <input
-					type="text" id="bikeColor" name="bikeColor" required
-					placeholder="Enter Bike color here"> <br>
+					type="text" id="bikeColor" name="bikeColor" minlength="2"
+					maxlength="20" required placeholder="Enter Bike color here">
+				<br>
 			</div>
 
 			<div class="form">
 				<label for="km"><strong>Current Odometer Reading:</strong></label> <input
-					type="number" id="km" name="km" min=0 max=99999999 required
+					type="number" id="km" name="km" min=0 max=200000 required
 					placeholder="Enter in Km"> Km <br>
 			</div>
 
 			<div class="form">
 				<label for="manufactureYear"><strong>Year of
 						Manufacture:</strong></label> <input type="number" id="manufactureYear"
-					name="manufactureYear" min=1900 required placeholder="Enter Year">
-				<br>
+					name="manufactureYear" min=1970 max=2021 required
+					placeholder="Enter Year"> <br>
 			</div>
 
 			<div class="form">
@@ -75,14 +77,14 @@ label {
 
 			<div class="form">
 				<label for="noPlate"><strong>Number Plate:</strong></label> <input
-					type="text" id="noPlate" name="noPlate" required
-					placeholder="Enter Number Plate"> <em>Format eg.
-					TN67E3454</em><br>
+					type="text" id="noPlate" name="noPlate" required maxlength="11"
+					minlength="9" placeholder="Enter Number Plate"> <em>Format
+					eg. TN67E3454</em><br>
 			</div>
 
 			<div class="form">
 				<label for="price"><strong>Estimated Price:</strong></label> <input
-					type="number" id="price" name="price" min="1" max="300000" required
+					type="number" id="price" name="price" min="0" max="300000" required
 					placeholder="Enter Price here"> <em>Excluding GST and
 					Insurance</em><br>
 			</div>

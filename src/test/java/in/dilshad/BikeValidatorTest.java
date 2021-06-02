@@ -26,6 +26,9 @@ public class BikeValidatorTest {
 
 		String bikeManufacturer4 = "Bajaj$";
 		assertFalse(BikeValidator.isValidBikeManufacturer(bikeManufacturer4));
+		
+		String bikeManufacturer5 = "Royal Enfield ThunderBirdV";  //Greater than 20 characters
+		assertFalse(BikeValidator.isValidBikeManufacturer(bikeManufacturer5));
 	}
 
 	/**
@@ -44,6 +47,9 @@ public class BikeValidatorTest {
 
 		String bikeModel4 = "TVS XL100*";
 		assertFalse(BikeValidator.isValidBikeModel(bikeModel4));
+		
+		String bikeModel5 = "ThunderbikeV Royal Enfield";
+		assertFalse(BikeValidator.isValidBikeModel(bikeModel5));
 	}
 
 	/**
@@ -62,6 +68,9 @@ public class BikeValidatorTest {
 
 		String bikeColor4 = "magenta & Purple";
 		assertFalse(BikeValidator.isValidBikeColor(bikeColor4));
+		
+		String bikeColor5 = "bright magenta with purple linning";
+		assertFalse(BikeValidator.isValidBikeColor(bikeColor5));
 	}
 
 	/**
@@ -79,7 +88,7 @@ public class BikeValidatorTest {
 		assertFalse(BikeValidator.isValidBikePrice(price3));
 
 		float price4 = 0;
-		assertFalse(BikeValidator.isValidBikePrice(price4));
+		assertTrue(BikeValidator.isValidBikePrice(price4));
 	}
 
 	/**
@@ -91,7 +100,7 @@ public class BikeValidatorTest {
 		assertTrue(BikeValidator.isValidKm(reading1));
 
 		int reading2 = 0;
-		assertFalse(BikeValidator.isValidKm(reading2));
+		assertTrue(BikeValidator.isValidKm(reading2));
 
 		int reading3 = -7000;
 		assertFalse(BikeValidator.isValidKm(reading3));

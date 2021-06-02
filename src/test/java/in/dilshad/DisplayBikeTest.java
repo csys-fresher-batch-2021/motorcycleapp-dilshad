@@ -1,6 +1,7 @@
 package in.dilshad;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ public class DisplayBikeTest {
 	 * Checks whether display method throws exception.
 	 */
 	@Test
-	public void DisplayBikeTest() {
+	public void displayBikeTest() {
 		try {
 			BikeManager.displayBikes();
 			assertTrue(true);

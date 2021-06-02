@@ -1,5 +1,5 @@
 <%@page import="in.dilshad.model.BikeSpecification"%>
-<%@page import="java.util.*"%>
+
 <%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Map"%>
@@ -87,46 +87,9 @@ tr:hover {
 		</table>
 		<%
 		}
-
-		HttpSession session1 = request.getSession();
-		String user = (String) session1.getAttribute("LOGGED_IN_USER");
-		if (user != null) {
-		out.println("Being an ADMIN, you have the priviledge access to change the bike specification from the database");
 		%>
-		<form action="RemoveBikeServlet">
-			<h6>Remove the bike</h6>
-			<label for="noPlate"><strong>Enter Plate no. of bike
-					to be removed: </strong></label> <input type="text" id="noPlate" name="noPlate"
-				required="required">
-			<button class="btn btn-danger">Remove</button>
-		</form>
-
-		<p>
-			############################################################################################</p>
-		Message:
-		<jsp:include page="message.jsp"></jsp:include>
-		<p>
-			############################################################################################</p>
-
-		<form action="UpdateBikeServlet">
-			<h6>Modify the existing bike</h6>
-
-			<label for="noPlate"><strong>Enter Plate no. of bike
-					to update: </strong></label> <input type="text" id="noPlate" name="noPlate"
-				required="required"><br> <br> <label for="km"><strong>Update
-					Odometer reading: </strong></label> <input type="number" id="km" name="km" min=1
-				max=300000 required="required"> <label for="price"><strong>Update
-					price: </strong></label> <input type="number" id="price" name="price" min=1
-				max=200000 required="required"><br>
 
 
-			<button class="btn btn-primary">Update</button>
-			<button type="reset" class="btn btn-secondary">Reset</button>
-
-		</form>
-		<%
-		}
-		%>
 	</main>
 </body>
 </html>
