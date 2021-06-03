@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import in.dilshad.validator.UserValidator;
+import in.dilshad.validator.AdminValidator;
 
 public class LoginTest {
 
@@ -14,19 +14,19 @@ public class LoginTest {
 	@Test
 	public void adminIDTest() {
 		String string1 = "admin";
-		assertTrue(UserValidator.isValidAdmin(string1));
+		assertTrue(AdminValidator.isValidAdmin(string1));
 
 		String string2 = "user";
-		assertFalse(UserValidator.isValidAdmin(string2));
+		assertFalse(AdminValidator.isValidAdmin(string2));
 
 		String string3 = "";
-		assertFalse(UserValidator.isValidAdmin(string3));
+		assertFalse(AdminValidator.isValidAdmin(string3));
 
 		String string4 = "admin123";
-		assertFalse(UserValidator.isValidAdmin(string4));
+		assertFalse(AdminValidator.isValidAdmin(string4));
 
 		String string5 = "admin%";
-		assertFalse(UserValidator.isValidAdmin(string5));
+		assertFalse(AdminValidator.isValidAdmin(string5));
 	}
 
 	/**
@@ -36,16 +36,16 @@ public class LoginTest {
 	@Test
 	public void adminPassWordTest() {
 		String string1 = "admin!";
-		assertTrue(UserValidator.isValidPassword(string1));
+		assertTrue(AdminValidator.isValidPassword(string1));
 
 		String string2 = "user";
-		assertFalse(UserValidator.isValidPassword(string2));
+		assertFalse(AdminValidator.isValidPassword(string2));
 
 		String string3 = "";
-		assertFalse(UserValidator.isValidPassword(string3));
+		assertFalse(AdminValidator.isValidPassword(string3));
 
 		String string4 = "admin123";
-		assertFalse(UserValidator.isValidPassword(string4));
+		assertFalse(AdminValidator.isValidPassword(string4));
 
 	}
 

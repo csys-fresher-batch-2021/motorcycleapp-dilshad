@@ -17,38 +17,39 @@ import in.dilshad.service.BikeManager;
 @WebServlet("/UpdateBikeServlet")
 public class UpdateBikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateBikeServlet() {
-        super();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-    @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public UpdateBikeServlet() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String noPlate = (request.getParameter("noPlate").trim());
 		Integer km = Integer.parseInt(request.getParameter("km"));
 		Integer price = Integer.parseInt(request.getParameter("price"));
 		PrintWriter out = response.getWriter();
 
 		try {
-			
+
 			BikeManager.updateBike(noPlate, km, price);
 			out.print(true);
 			out.flush();
-			//response.sendRedirect("DisplayBikesServlet?infoMessage=" + "Updated bike record successfully");
+			// response.sendRedirect("DisplayBikesServlet?infoMessage=" + "Updated bike
+			// record successfully");
 		} catch (Exception e) {
 			out.print(false);
 			out.flush();
-			//response.sendRedirect("DisplayBikesServlet?errorMessage=" + e.getMessage());
+			// response.sendRedirect("DisplayBikesServlet?errorMessage=" + e.getMessage());
 		}
-	
-	}
 
-	
+	}
 
 }

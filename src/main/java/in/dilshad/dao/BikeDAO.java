@@ -109,7 +109,7 @@ public class BikeDAO {
 	 * @return
 	 */
 	public static BikeSpecification getByPlateNo(String plateNo) {
-		BikeSpecification bikeSpecification =null;
+		BikeSpecification bikeSpecification = null;
 		Connection connection = null;
 		PreparedStatement pst = null;
 		ResultSet result = null;
@@ -171,6 +171,13 @@ public class BikeDAO {
 		}
 	}
 
+	/**
+	 * This method update the odometer reading and price in the database.
+	 * 
+	 * @param noPlate
+	 * @param km
+	 * @param price
+	 */
 	public static void updateBike(String noPlate, int km, int price) {
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -192,8 +199,9 @@ public class BikeDAO {
 	}
 
 	/**
-	 * Accepts Bike manufacture and Bike model as input and returns a list of bikes which
-	 * partially resembles the input keyword.
+	 * Accepts Bike manufacture and Bike model as input and returns a list of bikes
+	 * which partially resembles the input keyword.
+	 * 
 	 * @param manufacturer
 	 * @param model
 	 * @return
@@ -201,20 +209,21 @@ public class BikeDAO {
 	public static List<BikeSpecification> findBikeByModel(String manufacturer, String model) {
 		final List<BikeSpecification> bikeList = new ArrayList<>();
 
-
 		Connection connection = null;
 		PreparedStatement pst = null;
 		ResultSet result = null;
 
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM bike_specification WHERE bike_manufacturer ILIKE  ? OR bike_model ILIKE ?;";
+			String sql = "SELECT * FROM bike_specification WHERE bike_manufacturer ILIKE  ? AND bike_model ILIKE ?";
+
+			System.out.println(sql);
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, "%" + manufacturer + "%");
 			pst.setString(2, "%" + model + "%");
-			
-			result=pst.executeQuery();
-			
+
+			result = pst.executeQuery();
+
 			while (result.next()) {
 				BikeSpecification bikeSpecification = new BikeSpecification();
 				bikeSpecification.setBikeManufacturer(result.getString("bike_manufacturer"));
@@ -232,19 +241,25 @@ public class BikeDAO {
 				bikeList.add(bikeSpecification);
 			}
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 
-				throw new DBException("Could not fetch bikes based on model");
-		}
-		finally {
+			throw new DBException("Could not fetch bikes based on model");
+		} finally {
 			ConnectionUtil.closeConnection(result, pst, connection);
 		}
 		return bikeList;
 	}
-	
+
+	/**
+	 * The method fetched list of bike which is between the given price limit in
+	 * ascending order.
+	 * 
+	 * @param min
+	 * @param max
+	 * @return
+	 */
 	public static List<BikeSpecification> shortlistByPrice(int min, int max) {
 		final List<BikeSpecification> bikeList = new ArrayList<>();
-
 
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -256,9 +271,9 @@ public class BikeDAO {
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, min);
 			pst.setInt(2, max);
-			
-			result=pst.executeQuery();
-			
+
+			result = pst.executeQuery();
+
 			while (result.next()) {
 				BikeSpecification bikeSpecification = new BikeSpecification();
 				bikeSpecification.setBikeManufacturer(result.getString("bike_manufacturer"));
@@ -276,11 +291,10 @@ public class BikeDAO {
 				bikeList.add(bikeSpecification);
 			}
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 
-				throw new DBException("Could not fetch bikes based on price range");
-		}
-		finally {
+			throw new DBException("Could not fetch bikes based on price range");
+		} finally {
 			ConnectionUtil.closeConnection(result, pst, connection);
 		}
 		return bikeList;

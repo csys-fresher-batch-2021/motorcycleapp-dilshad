@@ -38,8 +38,12 @@ function getBike(){
 	fetch(url).then(res=> res.json()).then(res=>{
 		let bike = res;
 		console.log("Got response from servlet");
-		
 		let content = "";
+		if(bike==null || bike.errorMessage != null){
+			console.log(bike);
+			alert(bike.errorMessage);
+		}
+		else {
 		console.log(bike.status);
 		let status = "Not Verified"
 		if(bike.status){
@@ -48,12 +52,13 @@ function getBike(){
 		console.log(status);
 		content += "<br><p> Bike Manufacturer: " + bike.bikeManufacturer + "</p><p> Bike Model: "+ bike.bikeModel + "</p><p>Bike Color: " + bike.bikeColor + "</p><p>Bike Price: " + bike.bikePrice +"</p><p>Odometer reading: " + bike.km +"</p><p> Manufacture Year: " + bike.manufactureYear + "</p><p> Status: " + status + "</p><p>Fuel Type: " + bike.engineDetails.fuelType + "</p><p>VIN: " + bike.engineDetails.vin +"</p>"; 
 		console.log(content);
+		document.getElementById("continue").style.visibility = "visible";	
+
+		}
 		document.querySelector("#details").innerHTML= content;
-		document.getElementById("continue").style.visibility = "visible";
-		
-	})
-	
+	})	
 }
+
 
 function removeBike(){
 	event.preventDefault();

@@ -18,22 +18,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
-
-th, td {
-	padding: 8px;
-	text-align: left;
-	border-bottom: 1px solid;
-}
-
-tr:hover {
-	background-color: #f5f5f5;
-}
-</style>
+<link rel="stylesheet" href="assets/css/table_style.css">
 <meta charset="ISO-8859-1">
 <title>Available bikes</title>
 </head>
@@ -57,12 +42,13 @@ tr:hover {
 			<thead>
 				<tr>
 					<th scope="col">S.no</th>
+					<th scope="col">Plate no.</th>
 					<th scope="col">Manufacturer</th>
 					<th scope="col">Model</th>
 					<th scope="col">Color</th>
 					<th scope="col">Fuel</th>
-					<th scope="col">Year</th>
-					<th scope="col">Plate no.</th>
+					<th scope="col">Mfg year</th>
+					<th scope="col">Odometer reading</th>
 					<th scope="col">Price</th>
 				</tr>
 			</thead>
@@ -72,12 +58,13 @@ tr:hover {
 				for (BikeSpecification bike : bikeList) {
 					out.print("<tr>");
 					out.print("<td>" + i + "</td>");
+					out.print("<td>" + bike.getEngineDetails().get("noPlate") + "</td>");
 					out.print("<td>" + bike.getBikeManufacturer() + "</td>");
 					out.print("<td>" + bike.getBikeModel() + "</td>");
 					out.print("<td>" + bike.getBikeColor() + "</td>");
 					out.print("<td>" + bike.getEngineDetails().get("fuelType") + "</td>");
 					out.print("<td>" + bike.getManufactureYear() + "</td>");
-					out.print("<td>" + bike.getEngineDetails().get("noPlate") + "</td>");
+					out.print("<td>" + bike.getKm() + "</td>");
 					out.print("<td>" + "Rs." + bike.getBikePrice() + "</td>");
 					out.print("</tr>");
 					i++;
