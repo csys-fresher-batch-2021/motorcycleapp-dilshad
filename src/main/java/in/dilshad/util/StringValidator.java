@@ -10,15 +10,50 @@ public class StringValidator {
 	}
 
 	/**
-	 * Checks the presence of null character and whitespace
+	 * Method overloading is deployed. Checks the presence of null character and
+	 * whitespace.
 	 * 
 	 * @param inputString
 	 * @return
 	 */
 	public static boolean isValidString(String inputString) {
-		boolean isValid = true;
-		if (inputString == null || inputString.trim().isEmpty()) {
-			isValid = false;
+		boolean isValid = false;
+		if (inputString != null && !inputString.trim().isEmpty()) {
+			isValid = true;
+		}
+		return isValid;
+	}
+
+	/**
+	 * Checks the presence of null character and whitespace. Check if length of the
+	 * string is less than or equal to maximum value.
+	 * 
+	 * @param inputString
+	 * @param max
+	 * @return
+	 */
+	public static boolean isValidString(String inputString, int max) {
+		boolean isValid = false;
+		if (isValidString(inputString) && inputString.length() <= max) {
+			isValid = true;
+		}
+		return isValid;
+	}
+
+	/**
+	 * Checks the presence of null character and whitespace. Check if length of the
+	 * string is less than or equal to maximum value. Check if length of the string
+	 * is greater than or equal to minimum value.
+	 * 
+	 * @param inputString
+	 * @param max
+	 * @param min
+	 * @return
+	 */
+	public static boolean isValidString(String inputString, int max, int min) {
+		boolean isValid = false;
+		if (isValidString(inputString, max) && inputString.length() >= min) {
+			isValid = true;
 		}
 		return isValid;
 	}

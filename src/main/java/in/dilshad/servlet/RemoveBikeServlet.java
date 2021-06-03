@@ -1,6 +1,7 @@
 package in.dilshad.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,12 +33,19 @@ public class RemoveBikeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String noPlate = request.getParameter("noPlate").trim();
+		PrintWriter out = response.getWriter();
+
 		try {
 			BikeManager.removeBike(noPlate);
 	
-			response.sendRedirect("DisplayBikesServlet?infoMessage=" + "Removed bike record successfully");
+			//PrintWriter out = response.getWriter();
+			out.print(true);
+			out.flush();
+			//response.sendRedirect("DisplayBikesServlet?infoMessage=" + "Removed bike record successfully");
 		} catch (Exception e) {
-			response.sendRedirect("DisplayBikesServlet?errorMessage=" + e.getMessage());
+			out.print(false);
+			out.flush();
+			//response.sendRedirect("DisplayBikesServlet?errorMessage=" + e.getMessage());
 		}
 
 	}

@@ -104,9 +104,10 @@ public class BikeManager {
 	}
 
 	/**
-	 * Accepts Bike manufacturer and Bike model and hand over to DAO.
-	 * Validation: Only presence of special character is found and exception is thrown
-	 * User can fill either or both fields based their needs.
+	 * Accepts Bike manufacturer and Bike model and hand over to DAO. Validation:
+	 * Only presence of special character is found and exception is thrown User can
+	 * fill either or both fields based their needs.
+	 * 
 	 * @param manufacturer
 	 * @param model
 	 * @return
@@ -123,4 +124,28 @@ public class BikeManager {
 			throw new ServiceException(e.getMessage());
 		}
 	}
+
+	public static List<BikeSpecification> shortlistByPrice(int min, int max) {
+		try {
+			if (BikeValidator.isValidPriceLimit(min, max))
+				throw new ValidationException("Invalid price limits");
+			else
+				List<BikeSpecification> bikeList = new ArrayList<>();
+			bikeList=null;//BikeDAO.shortlistByPrice(min, max);
+				 
+				
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage());
+		}
+		return BikeDAO.shortlistByPrice(min, max);
+	}
+
+	public static void main(String[] args) {
+		// BikeSpecification bikeSpecification = new BikeSpecification();
+		//List<BikeSpecification> bikes = BikeManager.shortlistByPrice(45000, 85000);
+		//for (BikeSpecification bike : bikes)
+			//System.out.println(bike);
+		String name = "Wel come  ";
+		System.out.println(name.trim().length());
+	}	
 }

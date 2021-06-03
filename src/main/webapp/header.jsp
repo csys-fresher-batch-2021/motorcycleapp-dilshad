@@ -34,7 +34,9 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 						bike</a></li>
 
 				<li class="nav-item"><a class="nav-link"
-					href="DisplayBikesServlet">Remove/Update</a></li>
+					href="removeBike.jsp">Remove</a></li>
+					<li class="nav-item"><a class="nav-link"
+					href="updateBikeDetails.jsp">Update</a></li>
 				<%
 				}
 				%>

@@ -2,6 +2,7 @@ package in.dilshad.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import in.dilshad.model.BikeSpecification;
 import in.dilshad.service.BikeManager;
 
 /**
- * Servlet implementation class UpdateBikeServlet
+ * Servlet implementation class ShortlistByPriceServlet
  */
-@WebServlet("/UpdateBikeServlet")
-public class UpdateBikeServlet extends HttpServlet {
+@WebServlet("/ShortlistByPriceServlet")
+public class ShortlistByPriceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateBikeServlet() {
+    public ShortlistByPriceServlet() {
         super();
     }
 
@@ -30,25 +34,22 @@ public class UpdateBikeServlet extends HttpServlet {
 	 */
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String noPlate = (request.getParameter("noPlate").trim());
-		Integer km = Integer.parseInt(request.getParameter("km"));
-		Integer price = Integer.parseInt(request.getParameter("price"));
-		PrintWriter out = response.getWriter();
-
+    	Integer min = Integer.parseInt(request.getParameter("minv"));
+		Integer max = Integer.parseInt(request.getParameter("maxv"));
+		System.out.println(("Servlet" + min));
+		List<BikeSpecification> bikeList = BikeManager.shortlistByPrice(min, max);
+		Gson gson = new Gson();
+		String json = gson.toJson(bikeList);
 		try {
-			
-			BikeManager.updateBike(noPlate, km, price);
-			out.print(true);
+			PrintWriter out = response.getWriter();
+			out.print(json);
 			out.flush();
-			//response.sendRedirect("DisplayBikesServlet?infoMessage=" + "Updated bike record successfully");
-		} catch (Exception e) {
-			out.print(false);
-			out.flush();
-			//response.sendRedirect("DisplayBikesServlet?errorMessage=" + e.getMessage());
-		}
+		} catch (IOException e) {
+			e.printStackTrace();
+	}
 	
 	}
 
-	
+
 
 }

@@ -109,7 +109,7 @@ public class BikeDAO {
 	 * @return
 	 */
 	public static BikeSpecification getByPlateNo(String plateNo) {
-		BikeSpecification bikeSpecification = new BikeSpecification();
+		BikeSpecification bikeSpecification =null;
 		Connection connection = null;
 		PreparedStatement pst = null;
 		ResultSet result = null;
@@ -122,7 +122,8 @@ public class BikeDAO {
 			pst.setString(1, plateNo);
 
 			result = pst.executeQuery();
-			while (result.next()) {
+			if (result.next()) {
+				bikeSpecification = new BikeSpecification();
 				bikeSpecification.setBikeManufacturer(result.getString("bike_manufacturer"));
 				bikeSpecification.setBikeModel(result.getString("bike_model"));
 				bikeSpecification.setBikeColor(result.getString("bike_color"));
@@ -234,6 +235,50 @@ public class BikeDAO {
 		}catch (Exception e) {
 
 				throw new DBException("Could not fetch bikes based on model");
+		}
+		finally {
+			ConnectionUtil.closeConnection(result, pst, connection);
+		}
+		return bikeList;
+	}
+	
+	public static List<BikeSpecification> shortlistByPrice(int min, int max) {
+		final List<BikeSpecification> bikeList = new ArrayList<>();
+
+
+		Connection connection = null;
+		PreparedStatement pst = null;
+		ResultSet result = null;
+
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql = "SELECT * FROM bike_specification WHERE bike_price BETWEEN ? AND ? ORDER BY bike_price ASC ";
+			pst = connection.prepareStatement(sql);
+			pst.setInt(1, min);
+			pst.setInt(2, max);
+			
+			result=pst.executeQuery();
+			
+			while (result.next()) {
+				BikeSpecification bikeSpecification = new BikeSpecification();
+				bikeSpecification.setBikeManufacturer(result.getString("bike_manufacturer"));
+				bikeSpecification.setBikeModel(result.getString("bike_model"));
+				bikeSpecification.setBikeColor(result.getString("bike_color"));
+				bikeSpecification.setBikePrice(result.getFloat("bike_price"));
+				bikeSpecification.setKm(result.getInt("odometer_reading"));
+				bikeSpecification.setManufactureYear(result.getInt("manufacture_year"));
+				bikeSpecification.setStatus(result.getBoolean("status"));
+				Map<String, String> engineDetails = new HashMap<>();
+				engineDetails.put("fuelType", result.getString("fuel_type"));
+				engineDetails.put("vin", result.getString("vin"));
+				engineDetails.put("noPlate", result.getString("plate_no"));
+				bikeSpecification.setEngineDetails(engineDetails);
+				bikeList.add(bikeSpecification);
+			}
+
+		}catch (Exception e) {
+
+				throw new DBException("Could not fetch bikes based on price range");
 		}
 		finally {
 			ConnectionUtil.closeConnection(result, pst, connection);

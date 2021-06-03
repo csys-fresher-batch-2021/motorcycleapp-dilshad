@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.service.BikeManager;
@@ -18,14 +19,14 @@ import in.dilshad.util.Logger;
 /**
  * Servlet implementation class SearchByPlateNoJsonServlet
  */
-@WebServlet("/SearchByPlateNoJsonServlet")
-public class SearchByPlateNoJsonServlet extends HttpServlet {
+@WebServlet("/GetByPlateNoServlet")
+public class GetByPlateNoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SearchByPlateNoJsonServlet() {
+	public GetByPlateNoServlet() {
 		super();
 	}
 
@@ -38,19 +39,35 @@ public class SearchByPlateNoJsonServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 1. Get Form Values
 		String plateNo = request.getParameter("noPlate");
-		BikeSpecification bikeSpecification = BikeManager.searchByPlateNo(plateNo);
-		// Step 2: Convert to Json string
-		Gson gson = new Gson();
-		String json = gson.toJson(bikeSpecification);
-		Logger.println("Approach #2: GSON JAR \n" + json);
-		// Step 3: Write the json in response and flush it
+		PrintWriter out  = response.getWriter();
 		try {
-			PrintWriter out = response.getWriter();
-			out.print(json);
-			out.flush();
-		} catch (IOException e) {
+			BikeSpecification bikeSpecification = BikeManager.searchByPlateNo(plateNo);
+			// Step 2: Convert to Json string
+			Gson gson = new Gson();
+			
+			
+			
+			if (bikeSpecification  == null) {
+				//out.print(json);
+				JsonObject object = new JsonObject();
+				object.addProperty("errorMessage", "PlateNo not found");
+				out.print(object.toString());
+			}
+			else {
+				String json = gson.toJson(bikeSpecification);
+				Logger.println("Approach #2: GSON JAR \n" + json);
+				out.print(json);
+			}
+		} catch (Exception e) {
+			
 			e.printStackTrace();
+			JsonObject object = new JsonObject();
+			object.addProperty("errorMessage", e.getMessage());
+			out.print(object.toString());
 		}
+		
+		
+		out.flush();
 	}
 
 }
