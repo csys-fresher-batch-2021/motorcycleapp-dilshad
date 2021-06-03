@@ -16,17 +16,15 @@ public class LoginTest {
 		String string1 = "admin";
 		assertTrue(AdminValidator.isValidAdmin(string1));
 
-		String string2 = "user";
-		assertFalse(AdminValidator.isValidAdmin(string2));
+		String string2 = "username";
+		assertTrue(AdminValidator.isValidAdmin(string2));
 
 		String string3 = "";
 		assertFalse(AdminValidator.isValidAdmin(string3));
 
-		String string4 = "admin123";
-		assertFalse(AdminValidator.isValidAdmin(string4));
 
-		String string5 = "admin%";
-		assertFalse(AdminValidator.isValidAdmin(string5));
+		String string4 = "admin%";
+		assertFalse(AdminValidator.isValidAdmin(string4));
 	}
 
 	/**
@@ -36,16 +34,16 @@ public class LoginTest {
 	@Test
 	public void adminPassWordTest() {
 		String string1 = "admin!";
-		assertTrue(AdminValidator.isValidPassword(string1));
+		assertTrue(AdminValidator.isStrongPassword(string1));
 
 		String string2 = "user";
-		assertFalse(AdminValidator.isValidPassword(string2));
+		assertFalse(AdminValidator.isStrongPassword(string2));
 
 		String string3 = "";
-		assertFalse(AdminValidator.isValidPassword(string3));
+		assertFalse(AdminValidator.isStrongPassword(string3));
 
 		String string4 = "admin123";
-		assertFalse(AdminValidator.isValidPassword(string4));
+		assertTrue(AdminValidator.isStrongPassword(string4));
 
 	}
 
