@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import in.dilshad.validator.UserValidator;
+import in.dilshad.model.AdminDetails;
+import in.dilshad.service.AdminManager;
 
 /**
  * Servlet implementation class AdminLoginServlet
@@ -32,14 +33,21 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String userName = request.getParameter("uname");
-		String password = request.getParameter("pass");
+
+		AdminDetails adminDetails = new AdminDetails();
+		adminDetails.setID(request.getParameter("uname"));
+		adminDetails.setPassword(request.getParameter("pass"));
+		System.out.println("#################Inside Login Servlet #####################");
 
 		try {
-			UserValidator.isValidCredentials(userName, password);
-			HttpSession session = request.getSession();
-			session.setAttribute("LOGGED_IN_USER", userName);
-			response.sendRedirect("index.jsp?infoMessage=" + "Succesfully Logged in");
+			String name = AdminManager.adminLogin(adminDetails);
+			if (name != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("LOGGED_IN_ADMIN", name);
+				response.sendRedirect("index.jsp?infoMessage= Succesfully Logged in");
+			} else {
+				response.sendRedirect("loginPage.jsp?errorMessage=Invalid Credentials");
+			}
 		} catch (Exception e) {
 			response.sendRedirect("loginPage.jsp?errorMessage=" + e.getMessage());
 		}

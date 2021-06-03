@@ -49,7 +49,7 @@ public class FindBikeByModelServlet extends HttpServlet {
 			out.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
-	}
+		}
 
-}
+	}
 }

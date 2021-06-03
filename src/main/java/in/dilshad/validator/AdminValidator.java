@@ -1,10 +1,12 @@
 package in.dilshad.validator;
 
+import in.dilshad.exception.ValidationException;
+import in.dilshad.model.AdminDetails;
 import in.dilshad.util.StringValidator;
 
-public class UserValidator {
+public class AdminValidator {
 
-	private UserValidator() {
+	private AdminValidator() {
 		// Default constructor
 	}
 
@@ -13,10 +15,18 @@ public class UserValidator {
 	 * 
 	 * @param admin
 	 * @param password
+	 * @throws ValidationException
 	 */
-	public static void isValidCredentials(String admin, String password) throws IllegalArgumentException {
-		if (!(isValidAdmin(admin) && isValidPassword(password)))
-			throw new IllegalArgumentException("Enter Valid Credentials");
+	public static void validateRegister(AdminDetails admin) throws IllegalArgumentException, ValidationException {
+		String name = admin.getName();
+		String id = admin.getID();
+		String password = admin.getPassword();
+		if (!(isValidAdmin(id) && isStrongPassword(password) && isValidName(name)))
+			throw new ValidationException("Registration unsuccessful");
+	}
+
+	public static boolean isValidName(String name) {
+		return StringValidator.isAlpha(name);
 	}
 
 	/**
@@ -25,23 +35,15 @@ public class UserValidator {
 	 * @param admin
 	 * @return
 	 */
-	public static boolean isValidAdmin(String admin) {
+	public static boolean isValidAdmin(String Id) {
 		boolean isValid = false;
-		if (StringValidator.isAlpha(admin))
-			isValid = admin.equals("admin");
+		if (StringValidator.isValidString(Id, 15) && !StringValidator.isSpecialCharPresent(Id))
+			isValid = true;
 		return isValid;
 	}
 
-	/**
-	 * Validates Password. Default value is "admin!"
-	 * 
-	 * @param password
-	 * @return
-	 */
-	public static boolean isValidPassword(String password) {
-		boolean isValid = false;
-		if (StringValidator.isValidString(password))
-			isValid = password.equals("admin!");
-		return isValid;
+	public static boolean isStrongPassword(String password) {
+		return StringValidator.isValidString(password, 20, 5);
 	}
+
 }

@@ -1,9 +1,20 @@
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/fontawesome.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
 
 <%
-String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
+String loggedInUsername = (String) session.getAttribute("LOGGED_IN_ADMIN");
 %>
 
 
@@ -20,12 +31,20 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item active"><a class="nav-link"
 					href="index.jsp">Home <span class="sr-only">(current)</span></a></li>
+
 				<li class="nav-item"><a class="nav-link"
 					href="DisplayBikesServlet">Show Room</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="displayByPlateNoJSON.jsp">Search bike</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="findBikeByModel.jsp">Sort bikes</a></li>
+
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="dropdownId"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search
+						by</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownId">
+						<a class="dropdown-item" href="displayByPlateNoJSON.jsp">Plate
+							no.</a> <a class="dropdown-item" href="findBikeByModel.jsp">Bike
+							model</a> <a class="dropdown-item" href="shortlistByPrice.jsp">Price
+							limit</a>
+					</div></li>
 
 				<%
 				if (loggedInUsername != null) {
@@ -33,9 +52,8 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 				<li class="nav-item"><a class="nav-link" href="addBike.jsp">Add
 						bike</a></li>
 
+				<li class="nav-item"><a class="nav-link" href="removeBike.jsp">Remove</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="removeBike.jsp">Remove</a></li>
-					<li class="nav-item"><a class="nav-link"
 					href="updateBikeDetails.jsp">Update</a></li>
 				<%
 				}

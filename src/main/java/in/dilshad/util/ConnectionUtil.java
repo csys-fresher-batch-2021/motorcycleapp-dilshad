@@ -14,6 +14,11 @@ public class ConnectionUtil {
 		// Default Constructor
 	}
 
+	private static String driverClass = System.getenv("spring.datasource.driver-class-name");
+	private static String url = System.getenv("spring.datasource.url");
+	private static String username = System.getenv("spring.datasource.username");
+	private static String password = System.getenv("spring.datasource.password");
+
 	/**
 	 * This Method Will get the Connection from the Data BAse
 	 * 
@@ -24,11 +29,6 @@ public class ConnectionUtil {
 		// Step 2: Get the connection
 		Connection connection = null;
 		try {
-			 String driverClass = "org.postgresql.Driver";
-			 String url = "jdbc:postgresql://projecttracker.ck1ayq0lncmp.ap-south-1.rds.amazonaws.com/motorcycleapp";
-			 String username = "prod_user";
-			 String password = "prod_user";
-
 			// Load the JDBC driver in memory
 			Class.forName(driverClass);
 			connection = DriverManager.getConnection(url, username, password);
@@ -54,6 +54,13 @@ public class ConnectionUtil {
 		}
 	}
 
+	/**
+	 * This method closes the connection from database
+	 * 
+	 * @param rs
+	 * @param pst
+	 * @param connection
+	 */
 	public static void closeConnection(ResultSet rs, Statement pst, Connection connection) {
 		try {
 			if (rs != null) {

@@ -80,7 +80,7 @@ public class BikeValidator {
 	 */
 	public static boolean isValidBikeModel(String bikeModel) {
 		boolean isValid = false;
-		if (StringValidator.isValidString(bikeModel,20,2) && !StringValidator.isSpecialCharPresent(bikeModel))
+		if (StringValidator.isValidString(bikeModel, 20, 2) && !StringValidator.isSpecialCharPresent(bikeModel))
 			isValid = true;
 		return isValid;
 	}
@@ -143,15 +143,15 @@ public class BikeValidator {
 	}
 
 	/**
-	 * Validates Vehicle Identification Number - Strictly 17 characters. Checks the presence of Alphanumeric
-	 * characters and String length.
+	 * Validates Vehicle Identification Number - Strictly 17 characters. Checks the
+	 * presence of Alphanumeric characters and String length.
 	 * 
 	 * @param vin
 	 * @return
 	 */
 	public static boolean isValidVin(String vin) {
 		boolean isValid = false;
-		if (StringValidator.isValidString(vin,17,17) && !StringValidator.isSpecialCharPresent(vin))
+		if (StringValidator.isValidString(vin, 17, 17) && !StringValidator.isSpecialCharPresent(vin))
 			isValid = Pattern.matches("[A-Z0-9]{17}", vin);
 		return isValid;
 	}
@@ -164,18 +164,25 @@ public class BikeValidator {
 	 */
 	public static boolean isValidPlateNumber(String noPlate) {
 		boolean isValid = false;
-		if (StringValidator.isValidString(noPlate,11,9) && !StringValidator.isSpecialCharPresent(noPlate))
+		if (StringValidator.isValidString(noPlate, 11, 9) && !StringValidator.isSpecialCharPresent(noPlate))
 			isValid = Pattern.matches("[A-Z]{2}[0-9]{2}[A-Z]{1,3}[0-9]{4}", noPlate);
 		return isValid;
 	}
-	
+
+	/**
+	 * This method evaluates the price limit [0 3L]
+	 * 
+	 * @param min
+	 * @param max
+	 * @return
+	 */
 	public static boolean isValidPriceLimit(int min, int max) {
 		boolean isValid = false;
 		int maxLimit = 300000;
 		int minLimit = 0;
-		if(min > max)
+		if (min > max)
 			isValid = false;
-		else if(min >= minLimit && min < maxLimit && max > minLimit && max <= maxLimit)
+		else if (min >= minLimit && min < maxLimit && max > minLimit && max <= maxLimit)
 			isValid = true;
 		return isValid;
 	}

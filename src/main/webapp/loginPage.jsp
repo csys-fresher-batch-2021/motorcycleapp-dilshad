@@ -9,19 +9,20 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<h2>Login</h2>
+		<h2>Admin login</h2>
 		<br>
 		<form action="LoginServlet" method="post">
+			<jsp:include page="message.jsp"></jsp:include>
 			<label for="uname">Admin ID:</label> <input type="text" id="uname"
 				name="uname" required="required" autofocus="autofocus"
-				placeholder="Enter user name here"> <br> <em>Default
-				User Name : admin</em> <br> <br> <label for="pass">Access
-				Key:</label> <input type="password" id="pass" name="pass"
-				required="required" placeholder="Enter here"><br> <em>Default
-				Access Key: admin!</em><br> <br>
-			<button class="btn btn-secondary">Enter</button>
-			<br> <br><jsp:include page="message.jsp"></jsp:include>
+				placeholder="Enter user name here"> <br> <br> <label
+				for="pass">Access Key:</label> <input type="password" id="pass"
+				name="pass" required="required" placeholder="Enter here"><br>
+			<br>
+			<button class="btn btn-primary">Enter</button>
 		</form>
+		Not yet Registered? <a href="adminRegister.jsp"> Click here to
+			register</a>
 	</main>
 </body>
 </html>
