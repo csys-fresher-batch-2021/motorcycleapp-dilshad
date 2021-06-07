@@ -39,7 +39,6 @@ public class AdminDAO {
 			pst.executeUpdate();
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new DBException("Unable to Add Details");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -78,7 +77,6 @@ public class AdminDAO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new DBException("Already exist");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);

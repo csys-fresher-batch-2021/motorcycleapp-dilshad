@@ -14,7 +14,6 @@ import com.google.gson.JsonObject;
 
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.service.BikeManager;
-import in.dilshad.util.Logger;
 
 /**
  * Servlet implementation class SearchByPlateNoJsonServlet

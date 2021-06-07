@@ -64,7 +64,6 @@ public class BikeDAO {
 			pst.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DBException("Unable to Add Details");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -106,9 +105,8 @@ public class BikeDAO {
 				bikeSpecification.setEngineDetails(engineDetails);
 				bikeList.add(bikeSpecification);
 			}
-System.out.println(bikeList);
+			System.out.println(bikeList);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DBException("Unable to Fetch details from database table");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -256,7 +254,6 @@ System.out.println(bikeList);
 			}
 
 		} catch (Exception e) {
-
 			throw new DBException("Could not fetch bikes based on model");
 		} finally {
 			ConnectionUtil.closeConnection(result, pst, connection);
@@ -306,7 +303,6 @@ System.out.println(bikeList);
 			}
 
 		} catch (Exception e) {
-
 			throw new DBException("Could not fetch bikes based on price range");
 		} finally {
 			ConnectionUtil.closeConnection(result, pst, connection);

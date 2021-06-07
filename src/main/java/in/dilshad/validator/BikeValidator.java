@@ -180,7 +180,7 @@ public class BikeValidator {
 		boolean isValid = false;
 		int maxLimit = 300000;
 		int minLimit = 0;
-		if (min < max && min >= minLimit && min < maxLimit && max > minLimit && max <= maxLimit)
+		if (min < max && min >= minLimit && min < maxLimit && max <= maxLimit)
 			isValid = true;
 		return isValid;
 	}
