@@ -28,6 +28,9 @@ public class DisplayBikesServlet extends HttpServlet {
 	}
 
 	/**
+	 * Gets List of bikes from the service layer and hand over to .jsp page for
+	 * display.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

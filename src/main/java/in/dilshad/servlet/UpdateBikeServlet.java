@@ -32,22 +32,18 @@ public class UpdateBikeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String noPlate = (request.getParameter("noPlate").trim());
-		Integer km = Integer.parseInt(request.getParameter("km"));
-		Integer price = Integer.parseInt(request.getParameter("price"));
 		PrintWriter out = response.getWriter();
 
 		try {
-
+			String noPlate = (request.getParameter("noPlate").trim());
+			Integer km = Integer.parseInt(request.getParameter("km"));
+			Integer price = Integer.parseInt(request.getParameter("price"));
 			BikeManager.updateBike(noPlate, km, price);
 			out.print(true);
 			out.flush();
-			// response.sendRedirect("DisplayBikesServlet?infoMessage=" + "Updated bike
-			// record successfully");
 		} catch (Exception e) {
 			out.print(false);
 			out.flush();
-			// response.sendRedirect("DisplayBikesServlet?errorMessage=" + e.getMessage());
 		}
 
 	}

@@ -12,13 +12,13 @@
 	<main class="container-fluid">
 
 		<form onsubmit="getBike()">
-			<h6>Remove the bike</h6>
-			<jsp:include page="message.jsp"></jsp:include>
-			<p>
-				<label for="noPlate"><strong>Enter Plate no. of
-						bike to be removed: </strong></label> <input type="text" id="plateNo"
-					name="plateNo" required="required">
-				<button class="btn btn-secondary">Enter</button>
+			<br>
+			<h4>Remove the bike</h4>
+
+			<label for="noPlate"><strong>Enter Plate no. of bike
+					to be removed: </strong></label> <input type="text" id="plateNo" name="plateNo"
+				required="required">
+			<button class="btn btn-primary">Enter</button>
 		</form>
 
 		<p id="details"></p>
@@ -32,12 +32,12 @@
 
 function getBike(){
 	event.preventDefault();
-	console.log("Fetching bike ");
+	
 	let plateNo = document.querySelector("#plateNo").value;
 	let url = "GetByPlateNoServlet?noPlate=" + plateNo;
 	fetch(url).then(res=> res.json()).then(res=>{
 		let bike = res;
-		console.log("Got response from servlet");
+		
 		let content = "";
 		if(bike==null || bike.errorMessage != null){
 			console.log(bike);

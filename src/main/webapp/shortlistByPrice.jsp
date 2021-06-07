@@ -23,7 +23,6 @@
 			<button class="btn btn-info">Search</button>
 		</form>
 
-		<form>    </form>
 		<table>
 			<caption>List of Bikes</caption>
 
@@ -54,7 +53,7 @@
 			
 				fetch(url).then(res=> res.json()).then(res=>{
 					let bikes = res;
-					if (res !=null && res.errorMessage != null){
+					if (res ==null || res.errorMessage != null){
 						alert(res.errorMessage);
 					}
 					else {
@@ -68,7 +67,7 @@
 						let status = "Not Verified";
 						if(bike.status)
 							status = "Verified";
-					content += "<tr><td>" + count + "</td><td>" + bike.engineDetails.noPlate +"</td><td>"+ bike.bikeManufacturer+"</td><td>"+ bike.bikeModel + "</td><td>" + bike.bikeColor + "</td><td>" + bike.km +"</td><td>" + bike.bikePrice +"</td></tr>"; 
+						content += "<tr><td>" + count + "</td><td>" + bike.engineDetails.noPlate +"</td><td>"+ bike.bikeManufacturer+"</td><td>"+ bike.bikeModel + "</td><td>" + bike.bikeColor + "</td><td>" + bike.km +" Km</td><td>Rs." + bike.bikePrice +"/-</td></tr>"; 
 					count++;
 					}
 					console.log(content);

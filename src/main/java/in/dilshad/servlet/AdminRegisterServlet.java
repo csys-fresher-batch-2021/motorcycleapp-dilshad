@@ -26,6 +26,7 @@ public class AdminRegisterServlet extends HttpServlet {
 	}
 
 	/**
+	 * Accepts Admin details and hands over to Service layer.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

@@ -1,23 +1,6 @@
 <!Doctype>
 <html lang="en">
 <head>
-<style>
-table {
-	border-collapse: collapse;
-	width: 70%;
-}
-
-th, td {
-	text-align: left;
-	padding: 8px;
-}
-
-th {
-	background-color: rgba(116, 75, 212, 0.5);
-	color: white;
-}
-</style>
-
 <title>Motorcycle app</title>
 </head>
 <body>
@@ -34,13 +17,13 @@ th {
 				<img src="assets/images/showroom.png" alt="Motorcycle Show room"
 					style="width: 400px; height: 280px; margin-left: 15px; float: right;">
 
-				We offer a veritable platform that deals with Used Bikes, Booking
-				and acts as a knowledge hub for everything related to two-wheelers.
-				We have rich collection of used motorcycles of all models that are
-				in good condition and best quality. We also strive to give expert
-				advice to our users on their queries, provide information regarding
-				insurance and loan, generate original test drive reviews, helps to
-				locate Bike Dealers (both new and used bikes) and a lot more.
+				We offer a veritable platform that deals with used bikes and acts as
+				a knowledge hub for everything related to two-wheelers. We have rich
+				collection of used motorcycles of all models that are in good
+				condition and best quality. We also strive to give expert advice to
+				our users on their queries, provide information regarding insurance
+				and loan, generate original test drive reviews, helps to locate Bike
+				Dealers.
 			</p>
 
 		</article>
@@ -53,6 +36,7 @@ th {
 					monthly etc.</li>
 				<li>Used bikes may costs only half of the new bike price.</li>
 				<li>Useful for people who wants to own vehicle at low budget.</li>
+				<li>Can own it as an alternative vehicle or as a backup.</li>
 				<li>Additional features could be included based on the
 					requirement.</li>
 			</ol>

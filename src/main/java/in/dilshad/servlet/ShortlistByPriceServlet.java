@@ -31,28 +31,34 @@ public class ShortlistByPriceServlet extends HttpServlet {
 	}
 
 	/**
+	 * Accepts values and handover to service layer.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Integer min = Integer.parseInt(request.getParameter("minv"));
-		Integer max = Integer.parseInt(request.getParameter("maxv"));
 		PrintWriter out = response.getWriter();
-		// System.out.println(("Servlet" + min));
-
-		Gson gson = new Gson();
 
 		try {
-			List<BikeSpecification> bikeList = BikeManager.shortlistByPrice(min, max);
-			String json = gson.toJson(bikeList);
-			out.print(json);
+			Integer min = Integer.parseInt(request.getParameter("minv"));
+			Integer max = Integer.parseInt(request.getParameter("maxv"));
 
+			Gson gson = new Gson();
+			List<BikeSpecification> bikeList = BikeManager.shortlistByPrice(min, max);
+			if (bikeList.isEmpty()) {
+				JsonObject object = new JsonObject();
+				object.addProperty("errorMessage", "No bikes found for given price limits");
+				out.print(object.toString());
+			} else {
+				String json = gson.toJson(bikeList);
+				out.print(json);
+			}
 		} catch (Exception e) {
-			JsonObject jsonObject = new JsonObject();
-			jsonObject.addProperty("errorMessage", e.getMessage());
-			out.print(jsonObject.toString());
+			JsonObject object = new JsonObject();
+			object.addProperty("errorMessage", e.getMessage());
+			out.print(object.toString());
 		}
 
 		out.flush();

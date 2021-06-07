@@ -126,14 +126,9 @@ public class BikeManager {
 	}
 
 	public static List<BikeSpecification> shortlistByPrice(int min, int max) {
-		List<BikeSpecification> bikeList = null;
 		try {
 			if (!BikeValidator.isValidPriceLimit(min, max))
 				throw new ValidationException("Invalid price limits");
-			else {
-				bikeList = BikeDAO.shortlistByPrice(min, max);
-			}
-
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage());
 		}

@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="assets/css/table_style.css">
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <meta charset="ISO-8859-1">
@@ -23,7 +25,27 @@
 				Splendor, Active etc.</em><br> <br>
 			<button class="btn btn-info">Search</button>
 		</form>
-		<p id="details"></p>
+
+		<table>
+			<caption>List of Bikes</caption>
+
+			<thead>
+				<tr>
+					<th scope="col">S.no</th>
+					<th scope="col">Plate no.</th>
+					<th scope="col">Manufacturer</th>
+					<th scope="col">Model</th>
+					<th scope="col">Color</th>
+					<th scope="col">Km Driven</th>
+					<th scope="col">Price(Rs.)</th>
+				</tr>
+			</thead>
+			<tbody id="details">
+
+			</tbody>
+		</table>
+
+
 
 		<script>
 		function getAllBikes(){
@@ -35,17 +57,22 @@
 		
 			fetch(url).then(res=> res.json()).then(res=>{
 				let bikes = res;
-				console.log("Got response from servlet");
 				
 				let content = "";
+
+				if(bikes==null || bikes.errorMessage != null){
+					alert(bikes.errorMessage);
+				}else{
+					let count = 1;
 				for(let bike of bikes){
 					let status = "Not Verified";
 					if(bike.status)
 						status = "Verified";
-				content += "<br><p>Plate Number: " + bike.engineDetails.noPlate + "</p><p> Bike Manufacturer: " + bike.bikeManufacturer + "</p><p> Bike Model: "+ bike.bikeModel + "</p><p>Bike Color: " + bike.bikeColor + "</p><p>Bike Price: " + bike.bikePrice +"</p><p>Odometer reading: " + bike.km +"</p><p> Manufacture Year: " + bike.manufactureYear + "</p><p> Status: " + status + "</p><p>Fuel Type: " + bike.engineDetails.fuelType + "</p><p>VIN: " + bike.engineDetails.vin +"</p>"; 
+					
+					content += "<tr><td>" + count + "</td><td>" + bike.engineDetails.noPlate +"</td><td>"+ bike.bikeManufacturer+"</td><td>"+ bike.bikeModel + "</td><td>" + bike.bikeColor + "</td><td>" + bike.km +" Km</td><td>Rs." + bike.bikePrice +"/-</td></tr>"; 
+					count++; 
 				}
-				console.log(content);
-				
+				}
 				document.querySelector("#details").innerHTML= content;
 				
 			})

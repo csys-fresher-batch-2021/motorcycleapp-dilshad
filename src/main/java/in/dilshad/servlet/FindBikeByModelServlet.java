@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.service.BikeManager;
-import in.dilshad.util.Logger;
 
 /**
  * Servlet implementation class FindBikeByModelServlet
@@ -31,25 +31,37 @@ public class FindBikeByModelServlet extends HttpServlet {
 	}
 
 	/**
+	 * Accepts either or both fields and handover to service Layer.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String manufacturer = request.getParameter("manufacturer");
 		String model = request.getParameter("model");
-		List<BikeSpecification> bikeList = BikeManager.findBikeByModel(manufacturer, model);
-		Gson gson = new Gson();
-		String json = gson.toJson(bikeList);
-		Logger.println("GSON JAR \n" + json);
+
+		PrintWriter out = response.getWriter();
+
 		try {
-			PrintWriter out = response.getWriter();
-			out.print(json);
-			out.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
+			List<BikeSpecification> bikeList = BikeManager.findBikeByModel(manufacturer, model);
+			Gson gson = new Gson();
+			if (bikeList.isEmpty()) {
+				JsonObject object = new JsonObject();
+				object.addProperty("errorMessage", "Try with other keywords");
+				out.print(object.toString());
+			} else {
+				String json = gson.toJson(bikeList);
+				out.print(json);
+			}
+		} catch (Exception e) {
+			JsonObject object = new JsonObject();
+			object.addProperty("errorMessage", e.getMessage());
+			out.print(object.toString());
 		}
 
+		out.flush();
 	}
 }

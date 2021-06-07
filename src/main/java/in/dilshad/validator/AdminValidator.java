@@ -11,7 +11,7 @@ public class AdminValidator {
 	}
 
 	/**
-	 * Check Admin Id and Password and throws exception if invalid.
+	 * Check admin name,admin Id & Password and throws exception if invalid.
 	 * 
 	 * @param admin
 	 * @param password
@@ -25,23 +25,37 @@ public class AdminValidator {
 			throw new ValidationException("Registration unsuccessful");
 	}
 
+	/**
+	 * Checks if admin name consist of only alphabets and the lenght ranges from 2
+	 * to 20 characters.
+	 * 
+	 * @param name
+	 * @return
+	 */
 	public static boolean isValidName(String name) {
-		return StringValidator.isAlpha(name);
+		return StringValidator.isAlpha(name) && StringValidator.isValidString(name, 20, 2);
 	}
 
 	/**
-	 * Validates Admin Id. Default value is "admin"
+	 * Validates Admin id. Length must be in the range 2 to 15 characters. Special
+	 * characters should not be present.
 	 * 
 	 * @param admin
 	 * @return
 	 */
 	public static boolean isValidAdmin(String Id) {
 		boolean isValid = false;
-		if (StringValidator.isValidString(Id, 15) && !StringValidator.isSpecialCharPresent(Id))
+		if (StringValidator.isValidString(Id, 15, 2) && !StringValidator.isSpecialCharPresent(Id))
 			isValid = true;
 		return isValid;
 	}
 
+	/**
+	 * Checks if the password length is between 5 and 20 characters.
+	 * 
+	 * @param password
+	 * @return
+	 */
 	public static boolean isStrongPassword(String password) {
 		return StringValidator.isValidString(password, 20, 5);
 	}

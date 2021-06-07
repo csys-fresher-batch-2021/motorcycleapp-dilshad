@@ -24,6 +24,8 @@ public class LogoutServlet extends HttpServlet {
 	}
 
 	/**
+	 * Removes all the attributer in the session layer.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
