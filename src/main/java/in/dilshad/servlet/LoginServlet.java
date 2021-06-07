@@ -27,6 +27,8 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	/**
+	 * Accepts Login credentials and handover to Service layer.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -37,7 +39,6 @@ public class LoginServlet extends HttpServlet {
 		AdminDetails adminDetails = new AdminDetails();
 		adminDetails.setID(request.getParameter("uname"));
 		adminDetails.setPassword(request.getParameter("pass"));
-		System.out.println("#################Inside Login Servlet #####################");
 
 		try {
 			String name = AdminManager.adminLogin(adminDetails);

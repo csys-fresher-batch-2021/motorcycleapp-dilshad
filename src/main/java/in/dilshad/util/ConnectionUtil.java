@@ -20,7 +20,7 @@ public class ConnectionUtil {
 	private static String password = System.getenv("spring.datasource.password");
 
 	/**
-	 * This Method Will get the Connection from the Data BAse
+	 * This Method Will get the Connection from the Database
 	 * 
 	 * @return
 	 * @throws DBException
@@ -39,6 +39,12 @@ public class ConnectionUtil {
 		return connection;
 	}
 
+	/**
+	 * This method closes the connection from database
+	 * 
+	 * @param pst
+	 * @param connection
+	 */
 	public static void closeConnection(Statement pst, Connection connection) {
 		try {
 			if (pst != null) {

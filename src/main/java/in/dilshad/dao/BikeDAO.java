@@ -12,8 +12,20 @@ import java.util.Map;
 import in.dilshad.exception.DBException;
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.util.ConnectionUtil;
+import in.dilshad.util.Constants;
 
 public class BikeDAO {
+
+	private static final String PLATE_NO = "plate_no";
+	private static final String VIN = "vin";
+	private static final String FUEL_TYPE = "fuel_type";
+	private static final String STATUS = "status";
+	private static final String MANUFACTURE_YEAR = "manufacture_year";
+	private static final String ODOMETER_READING = "odometer_reading";
+	private static final String BIKE_PRICE = "bike_price";
+	private static final String BIKE_COLOR = "bike_color";
+	private static final String BIKE_MODEL = "bike_model";
+	private static final String BIKE_MANUFACTURER = "bike_manufacturer";
 
 	private BikeDAO() {
 		// Default constructor
@@ -46,9 +58,9 @@ public class BikeDAO {
 			pst.setInt(5, bikeSpecification.getKm());
 			pst.setInt(6, bikeSpecification.getManufactureYear());
 			pst.setBoolean(7, bikeSpecification.isStatus());
-			pst.setString(8, bikeSpecification.getEngineDetails().get("fuelType"));
-			pst.setString(9, bikeSpecification.getEngineDetails().get("vin"));
-			pst.setString(10, bikeSpecification.getEngineDetails().get("noPlate"));
+			pst.setString(8, bikeSpecification.getEngineDetails().get(Constants.FUEL));
+			pst.setString(9, bikeSpecification.getEngineDetails().get(Constants.VIN));
+			pst.setString(10, bikeSpecification.getEngineDetails().get(Constants.PLATENO));
 			pst.executeUpdate();
 
 		} catch (SQLException e) {
@@ -79,21 +91,21 @@ public class BikeDAO {
 
 			while (result.next()) {
 				BikeSpecification bikeSpecification = new BikeSpecification();
-				bikeSpecification.setBikeManufacturer(result.getString("bike_manufacturer"));
-				bikeSpecification.setBikeModel(result.getString("bike_model"));
-				bikeSpecification.setBikeColor(result.getString("bike_color"));
-				bikeSpecification.setBikePrice(result.getFloat("bike_price"));
-				bikeSpecification.setKm(result.getInt("odometer_reading"));
-				bikeSpecification.setManufactureYear(result.getInt("manufacture_year"));
-				bikeSpecification.setStatus(result.getBoolean("status"));
+				bikeSpecification.setBikeManufacturer(result.getString(BIKE_MANUFACTURER));
+				bikeSpecification.setBikeModel(result.getString(BIKE_MODEL));
+				bikeSpecification.setBikeColor(result.getString(BIKE_COLOR));
+				bikeSpecification.setBikePrice(result.getFloat(BIKE_PRICE));
+				bikeSpecification.setKm(result.getInt(ODOMETER_READING));
+				bikeSpecification.setManufactureYear(result.getInt(MANUFACTURE_YEAR));
+				bikeSpecification.setStatus(result.getBoolean(STATUS));
 				Map<String, String> engineDetails = new HashMap<>();
-				engineDetails.put("fuelType", result.getString("fuel_type"));
-				engineDetails.put("vin", result.getString("vin"));
-				engineDetails.put("noPlate", result.getString("plate_no"));
+				engineDetails.put(Constants.FUEL, result.getString(FUEL_TYPE));
+				engineDetails.put(Constants.VIN, result.getString(VIN));
+				engineDetails.put(Constants.PLATENO, result.getString(PLATE_NO));
 				bikeSpecification.setEngineDetails(engineDetails);
 				bikeList.add(bikeSpecification);
 			}
-
+			System.out.println(bikeList);
 		} catch (SQLException e) {
 			throw new DBException("Unable to Fetch details from database table");
 		} finally {
@@ -124,17 +136,17 @@ public class BikeDAO {
 			result = pst.executeQuery();
 			if (result.next()) {
 				bikeSpecification = new BikeSpecification();
-				bikeSpecification.setBikeManufacturer(result.getString("bike_manufacturer"));
-				bikeSpecification.setBikeModel(result.getString("bike_model"));
-				bikeSpecification.setBikeColor(result.getString("bike_color"));
-				bikeSpecification.setBikePrice(result.getFloat("bike_price"));
-				bikeSpecification.setKm(result.getInt("odometer_reading"));
-				bikeSpecification.setManufactureYear(result.getInt("manufacture_year"));
-				bikeSpecification.setStatus(result.getBoolean("status"));
+				bikeSpecification.setBikeManufacturer(result.getString(BIKE_MANUFACTURER));
+				bikeSpecification.setBikeModel(result.getString(BIKE_MODEL));
+				bikeSpecification.setBikeColor(result.getString(BIKE_COLOR));
+				bikeSpecification.setBikePrice(result.getFloat(BIKE_PRICE));
+				bikeSpecification.setKm(result.getInt(ODOMETER_READING));
+				bikeSpecification.setManufactureYear(result.getInt(MANUFACTURE_YEAR));
+				bikeSpecification.setStatus(result.getBoolean(STATUS));
 				Map<String, String> engineDetails = new HashMap<>();
-				engineDetails.put("fuelType", result.getString("fuel_type"));
-				engineDetails.put("vin", result.getString("vin"));
-				engineDetails.put("noPlate", result.getString("plate_no"));
+				engineDetails.put(Constants.FUEL, result.getString(FUEL_TYPE));
+				engineDetails.put(Constants.VIN, result.getString(VIN));
+				engineDetails.put(Constants.PLATENO, result.getString(PLATE_NO));
 				bikeSpecification.setEngineDetails(engineDetails);
 			}
 		} catch (Exception e) {
@@ -226,23 +238,22 @@ public class BikeDAO {
 
 			while (result.next()) {
 				BikeSpecification bikeSpecification = new BikeSpecification();
-				bikeSpecification.setBikeManufacturer(result.getString("bike_manufacturer"));
-				bikeSpecification.setBikeModel(result.getString("bike_model"));
-				bikeSpecification.setBikeColor(result.getString("bike_color"));
-				bikeSpecification.setBikePrice(result.getFloat("bike_price"));
-				bikeSpecification.setKm(result.getInt("odometer_reading"));
-				bikeSpecification.setManufactureYear(result.getInt("manufacture_year"));
-				bikeSpecification.setStatus(result.getBoolean("status"));
+				bikeSpecification.setBikeManufacturer(result.getString(BIKE_MANUFACTURER));
+				bikeSpecification.setBikeModel(result.getString(BIKE_MODEL));
+				bikeSpecification.setBikeColor(result.getString(BIKE_COLOR));
+				bikeSpecification.setBikePrice(result.getFloat(BIKE_PRICE));
+				bikeSpecification.setKm(result.getInt(ODOMETER_READING));
+				bikeSpecification.setManufactureYear(result.getInt(MANUFACTURE_YEAR));
+				bikeSpecification.setStatus(result.getBoolean(STATUS));
 				Map<String, String> engineDetails = new HashMap<>();
-				engineDetails.put("fuelType", result.getString("fuel_type"));
-				engineDetails.put("vin", result.getString("vin"));
-				engineDetails.put("noPlate", result.getString("plate_no"));
+				engineDetails.put(Constants.FUEL, result.getString(FUEL_TYPE));
+				engineDetails.put(Constants.VIN, result.getString(VIN));
+				engineDetails.put(Constants.PLATENO, result.getString(PLATE_NO));
 				bikeSpecification.setEngineDetails(engineDetails);
 				bikeList.add(bikeSpecification);
 			}
 
 		} catch (Exception e) {
-
 			throw new DBException("Could not fetch bikes based on model");
 		} finally {
 			ConnectionUtil.closeConnection(result, pst, connection);
@@ -276,23 +287,22 @@ public class BikeDAO {
 
 			while (result.next()) {
 				BikeSpecification bikeSpecification = new BikeSpecification();
-				bikeSpecification.setBikeManufacturer(result.getString("bike_manufacturer"));
-				bikeSpecification.setBikeModel(result.getString("bike_model"));
-				bikeSpecification.setBikeColor(result.getString("bike_color"));
-				bikeSpecification.setBikePrice(result.getFloat("bike_price"));
-				bikeSpecification.setKm(result.getInt("odometer_reading"));
-				bikeSpecification.setManufactureYear(result.getInt("manufacture_year"));
-				bikeSpecification.setStatus(result.getBoolean("status"));
+				bikeSpecification.setBikeManufacturer(result.getString(BIKE_MANUFACTURER));
+				bikeSpecification.setBikeModel(result.getString(BIKE_MODEL));
+				bikeSpecification.setBikeColor(result.getString(BIKE_COLOR));
+				bikeSpecification.setBikePrice(result.getFloat(BIKE_PRICE));
+				bikeSpecification.setKm(result.getInt(ODOMETER_READING));
+				bikeSpecification.setManufactureYear(result.getInt(MANUFACTURE_YEAR));
+				bikeSpecification.setStatus(result.getBoolean(STATUS));
 				Map<String, String> engineDetails = new HashMap<>();
-				engineDetails.put("fuelType", result.getString("fuel_type"));
-				engineDetails.put("vin", result.getString("vin"));
-				engineDetails.put("noPlate", result.getString("plate_no"));
+				engineDetails.put(Constants.FUEL, result.getString(FUEL_TYPE));
+				engineDetails.put(Constants.VIN, result.getString(VIN));
+				engineDetails.put(Constants.PLATENO, result.getString(PLATE_NO));
 				bikeSpecification.setEngineDetails(engineDetails);
 				bikeList.add(bikeSpecification);
 			}
 
 		} catch (Exception e) {
-
 			throw new DBException("Could not fetch bikes based on price range");
 		} finally {
 			ConnectionUtil.closeConnection(result, pst, connection);

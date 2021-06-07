@@ -37,16 +37,11 @@ public class RemoveBikeServlet extends HttpServlet {
 
 		try {
 			BikeManager.removeBike(noPlate);
-
-			// PrintWriter out = response.getWriter();
 			out.print(true);
 			out.flush();
-			// response.sendRedirect("DisplayBikesServlet?infoMessage=" + "Removed bike
-			// record successfully");
 		} catch (Exception e) {
 			out.print(false);
 			out.flush();
-			// response.sendRedirect("DisplayBikesServlet?errorMessage=" + e.getMessage());
 		}
 
 	}

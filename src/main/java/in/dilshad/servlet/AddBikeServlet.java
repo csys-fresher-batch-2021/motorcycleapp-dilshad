@@ -21,6 +21,8 @@ public class AddBikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * Accepts Bike specification inputs and hands over to Service layer.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

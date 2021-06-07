@@ -14,7 +14,6 @@ import com.google.gson.JsonObject;
 
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.service.BikeManager;
-import in.dilshad.util.Logger;
 
 /**
  * Servlet implementation class SearchByPlateNoJsonServlet
@@ -31,39 +30,36 @@ public class GetByPlateNoServlet extends HttpServlet {
 	}
 
 	/**
+	 * Accepts Plate number and handover to Service layer.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 1. Get Form Values
+
 		String plateNo = request.getParameter("noPlate");
 		PrintWriter out = response.getWriter();
+
 		try {
-			BikeSpecification bikeSpecification = BikeManager.searchByPlateNo(plateNo);
-			// Step 2: Convert to Json string
 			Gson gson = new Gson();
+			BikeSpecification bikeSpecification = BikeManager.searchByPlateNo(plateNo);
 
 			if (bikeSpecification == null) {
-				// out.print(json);
+
 				JsonObject object = new JsonObject();
-				object.addProperty("errorMessage", "PlateNo not found");
+				object.addProperty("errorMessage", "Plate number not found");
 				out.print(object.toString());
 			} else {
 				String json = gson.toJson(bikeSpecification);
-				Logger.println("Approach #2: GSON JAR \n" + json);
 				out.print(json);
 			}
 		} catch (Exception e) {
-
-			e.printStackTrace();
 			JsonObject object = new JsonObject();
 			object.addProperty("errorMessage", e.getMessage());
 			out.print(object.toString());
 		}
-
 		out.flush();
 	}
-
 }

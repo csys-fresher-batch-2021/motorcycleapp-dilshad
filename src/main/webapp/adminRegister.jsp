@@ -4,6 +4,10 @@
 <html lang="en">
 <head>
 <style>
+.required {
+	color: red;
+}
+
 div .form {
 	margin-bottom: 50px;
 }
@@ -25,20 +29,22 @@ label {
 		<br><jsp:include page="message.jsp"></jsp:include><br>
 		<form action="AdminRegisterServlet">
 			<div class="form">
-				<label for="name"><strong>Enter your Name:</strong></label> <input
-					type="text" id="name" name="name" minlength="2" maxlength="20"
-					required autofocus placeholder="Enter your name"> <br>
+				<label for="name"><strong>Enter your Name </strong><span
+					class="required"> *</span></label><input type="text" id="name" name="name"
+					minlength="2" maxlength="20" required autofocus
+					placeholder="Enter your name"> <br> <br>
 			</div>
 			<div class="form">
-				<label for="id"><strong>Enter your ID:</strong></label> <input
-					type="text" id="id" name="id" required autofocus
-					placeholder="Enter your ID"> <br>
+				<label for="id"><strong>Enter your ID </strong><span
+					class="required"> *</span></label><input type="text" id="id" name="id"
+					required autofocus placeholder="Enter your ID"> <br> <br>
 
 			</div>
 			<div class="form">
-				<label for="pass"><strong>Enter Password:</strong></label> <input
-					type="password" id="pass" name="pass" required autofocus
-					placeholder="Enter Password"> <br>
+				<label for="pass"><strong>Enter Password </strong><span
+					class="required"> *</span></label><input type="password" id="pass"
+					name="pass" required autofocus placeholder="Enter Password">
+				<br> <br> <br>
 			</div>
 			<button class="btn btn-primary">Register</button>
 

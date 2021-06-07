@@ -64,8 +64,8 @@
 					out.print("<td>" + bike.getBikeColor() + "</td>");
 					out.print("<td>" + bike.getEngineDetails().get("fuelType") + "</td>");
 					out.print("<td>" + bike.getManufactureYear() + "</td>");
-					out.print("<td>" + bike.getKm() + "</td>");
-					out.print("<td>" + "Rs." + bike.getBikePrice() + "</td>");
+					out.print("<td>" + bike.getKm() + " Km</td>");
+					out.print("<td>" + "Rs." + bike.getBikePrice() + "/-</td>");
 					out.print("</tr>");
 					i++;
 				}

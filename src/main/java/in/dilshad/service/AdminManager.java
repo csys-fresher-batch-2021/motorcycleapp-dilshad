@@ -19,7 +19,7 @@ public class AdminManager {
 		try {
 			AdminDAO.addDAO(admin);
 		} catch (Exception e) {
-			throw new ServiceException("Already exist");
+			throw new ServiceException("Admin ID already exist");
 		}
 	}
 

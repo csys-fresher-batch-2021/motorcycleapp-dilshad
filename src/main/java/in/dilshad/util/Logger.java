@@ -11,7 +11,7 @@ public class Logger {
 	 * 
 	 * @param message
 	 */
-	public static void println(String message) {
+	public static void println(String message) { // Replace String with Object
 		System.out.println(message);
 	}
 

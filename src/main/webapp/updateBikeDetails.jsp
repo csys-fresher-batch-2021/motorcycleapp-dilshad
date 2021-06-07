@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Remove bike</title>
+<title>Update bike</title>
 </head>
 <body>
 
@@ -12,12 +12,13 @@
 	<main class="container-fluid">
 
 		<form onsubmit="getBike()">
-			<h6>Update bike details</h6>
+			<br>
+			<h4>Update bike details</h4>
 			<jsp:include page="message.jsp"></jsp:include>
 			<p>
 				<label for="noPlate"><strong>Enter Plate no. of
 						bike to update: </strong></label> <input type="text" id="noPlate" name="noPlate"
-					required="required"><br> <br>
+					required="required">
 
 				<button class="btn btn-primary">Enter</button>
 		</form>
@@ -35,18 +36,14 @@
 					type="number" id="price" name="price" min=1 max=120000
 					required="required"><br>
 
-				<button class="btn btn-danger" type="submit">Confirm
+				<button class="btn btn-warning" type="submit">Confirm
 					Update</button>
 				<button type="reset" class="btn btn-secondary">Reset</button>
 		</form>
-
-
 		<br>
-
-		<script type="text/javascript">	
+		<script>	
 
 function getBike(){
-	//document.querySelector("#km").setAttribute("min", bike.km);
 	event.preventDefault();
 	console.log("Fetching bike ");
 	let plateNo = document.querySelector("#noPlate").value;
@@ -87,10 +84,7 @@ function updateBike(){
 		window.location.href="DisplayBikesServlet";
 	});
 }
-
 </script>
-
-
 	</main>
 </body>
 </html>
