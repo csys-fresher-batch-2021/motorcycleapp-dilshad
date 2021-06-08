@@ -13,7 +13,7 @@
 
 		<form onsubmit="getBike()">
 			<br>
-			<h4>Update bike details</h4>
+			<h3>Update bike details</h3>
 			<jsp:include page="message.jsp"></jsp:include>
 			<p>
 				<label for="noPlate"><strong>Enter Plate no. of

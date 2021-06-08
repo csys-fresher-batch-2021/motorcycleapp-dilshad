@@ -65,7 +65,7 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_ADMIN");
 				if (loggedInUsername == null) {
 				%>
 				<li class="nav-item active"><a class="nav-link"
-					href="loginPage.jsp">Login</a></li>
+					href="loginPage.jsp">Admin login</a></li>
 				<%
 				} else {
 				%>

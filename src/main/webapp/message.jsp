@@ -4,13 +4,13 @@
 String errorMessage = request.getParameter("errorMessage");
 
 if (errorMessage != null) {
-	out.println("<p><strong>" + errorMessage + "</strong></p>");
+	out.println("<font color='red'><strong>" + errorMessage + "</strong></font>");
 }
 errorMessage = null;
 
 String infoMessage = request.getParameter("infoMessage");
 if (infoMessage != null) {
-	out.println("<p><strong>" + infoMessage + "</strong><p>");
+	out.println("<font color='green'><strong>" + infoMessage + "</strong></font>");
 }
 infoMessage = null;
 %>

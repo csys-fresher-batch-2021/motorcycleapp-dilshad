@@ -25,19 +25,19 @@ label {
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 
-		<h3>Admin Registration</h3>
+		<br><h3>Admin Registration</h3>
 		<br><jsp:include page="message.jsp"></jsp:include><br>
 		<form action="AdminRegisterServlet">
 			<div class="form">
 				<label for="name"><strong>Enter your Name </strong><span
 					class="required"> *</span></label><input type="text" id="name" name="name"
 					minlength="2" maxlength="20" required autofocus
-					placeholder="Enter your name"> <br> <br>
+					placeholder="Enter your name"> <br> 
 			</div>
 			<div class="form">
 				<label for="id"><strong>Enter your ID </strong><span
 					class="required"> *</span></label><input type="text" id="id" name="id"
-					required autofocus placeholder="Enter your ID"> <br> <br>
+					required autofocus placeholder="Enter your ID"> <br>
 
 			</div>
 			<div class="form">
