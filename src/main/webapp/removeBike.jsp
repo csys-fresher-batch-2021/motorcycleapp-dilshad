@@ -13,7 +13,7 @@
 
 		<form onsubmit="getBike()">
 			<br>
-			<h4>Remove the bike</h4>
+			<h3>Remove the bike</h3>
 
 			<label for="noPlate"><strong>Enter Plate no. of bike
 					to be removed: </strong></label> <input type="text" id="plateNo" name="plateNo"

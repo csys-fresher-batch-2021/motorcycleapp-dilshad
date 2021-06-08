@@ -84,7 +84,7 @@ public class BikeDAO {
 			connection = ConnectionUtil.getConnection();
 
 			// Sql command
-			String sql = "SELECT * FROM bike_specification";
+			String sql = "SELECT * FROM bike_specification ORDER BY bike_manufacturer";
 			// Execution Step
 			pst = connection.prepareStatement(sql);
 			ResultSet result = pst.executeQuery();

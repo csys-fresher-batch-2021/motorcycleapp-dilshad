@@ -20,7 +20,7 @@ label {
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<h2>Add upcoming bikes</h2>
+		<br><h3>Add upcoming bike</h3>
 		<br>
 		<form action="Addbikeservlet" method="GET" autocomplete="on">
 			<div class="form">
