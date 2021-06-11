@@ -10,6 +10,11 @@ public class AdminManager {
 
 	}
 
+	/**
+	 * Admin registration form. Accepts admin details, validates and passes to DAO
+	 * 
+	 * @param admin
+	 */
 	public static void registerAdmin(AdminDetails admin) {
 		try {
 			AdminValidator.validateRegister(admin);
@@ -23,6 +28,13 @@ public class AdminManager {
 		}
 	}
 
+	/**
+	 * Admin Login form. Accept admin details and returns admin name from the
+	 * database if valid credentials is passed.
+	 * 
+	 * @param adminDetails
+	 * @return
+	 */
 	public static String adminLogin(AdminDetails adminDetails) {
 
 		try {

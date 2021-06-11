@@ -20,7 +20,8 @@ label {
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<br><h2>Add upcoming bike</h2>
+		<br>
+		<h2>Add upcoming bike</h2>
 		<br>
 		<form action="Addbikeservlet" method="GET" autocomplete="on">
 			<div class="form">
@@ -88,23 +89,25 @@ label {
 					placeholder="Enter Price here"> <em>Excluding GST and
 					Insurance</em><br>
 			</div>
-			<br/>
+			<br />
 			<h3>Owner Details</h3>
-			
-			<label for="ownerName"><strong>Enter name of Bike owner:</strong></label> <input type="text" id="ownerName"
-					name="ownerName" minlength="2" maxlength="20" required
-					autofocus placeholder="Enter Bike Owner name"> <br>
+
+			<label for="ownerName"><strong>Enter name of Bike
+					owner:</strong></label> <input type="text" id="ownerName" name="ownerName"
+				minlength="2" maxlength="20" required autofocus
+				placeholder="Enter Bike Owner name"> <br>
 			</div>
 
 			<div class="form">
-				<label for="ownerAddress"><strong>Enter Bike owner Address:</strong></label> <textarea
-					type="text" id="ownerAddress" name="ownerAddress" minlength="5"
-					maxlength="200" required placeholder="Enter Bike Owner Address here"></textarea>
-				<br>
-
-			<label for="ownerPhoneNo"><strong>Enter Bike owner Mobile no:</strong></label> <input type="number" id="ownerPhoneNo"
-					name="ownerPhoneNo"  required
-					autofocus placeholder="Enter Bike Owner Phone no."> <br>
+				<label for="ownerAddress"><strong>Enter Bike owner
+						Address:</strong></label>
+				<textarea type="text" id="ownerAddress" name="ownerAddress"
+					minlength="5" maxlength="200" required
+					placeholder="Enter Bike Owner Address here"></textarea>
+				<br> <label for="ownerPhoneNo"><strong>Enter
+						Bike owner Mobile no:</strong></label> <input type="number" id="ownerPhoneNo"
+					name="ownerPhoneNo" required autofocus
+					placeholder="Enter Bike Owner Phone no."> <br>
 			</div>
 
 			<br><jsp:include page="message.jsp"></jsp:include><br>

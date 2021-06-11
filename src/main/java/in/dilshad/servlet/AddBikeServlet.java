@@ -49,7 +49,7 @@ public class AddBikeServlet extends HttpServlet {
 		ownerDTO.setOwnerName(request.getParameter("ownerName").trim());
 		ownerDTO.setOwnerAddress(request.getParameter("ownerAddress").trim());
 		ownerDTO.setBikePlateNo(request.getParameter("noPlate").trim());
-		
+
 		try {
 			ownerDTO.setOwnerPhoneNo(Long.parseLong(request.getParameter("ownerPhoneNo")));
 
@@ -57,7 +57,7 @@ public class AddBikeServlet extends HttpServlet {
 			newBike.setManufactureYear(Integer.parseInt(request.getParameter("manufactureYear").trim()));
 			newBike.setBikePrice(Float.parseFloat(request.getParameter("price").trim()));
 			BikeManager.addBike(newBike);
-			
+
 			OwnerManager.addOwnerDetails(ownerDTO);
 			response.sendRedirect("DisplayBikesServlet?infoMessage=" + infoMessage);
 

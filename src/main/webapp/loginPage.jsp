@@ -14,11 +14,12 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<br><h2>Admin login</h2>
-		
+		<br>
+		<h2>Admin login</h2>
+
 		<form action="LoginServlet" method="post">
-			<jsp:include page="message.jsp"></jsp:include><br>
-			<label for="uname">Admin ID:</label> <span class="required">*</span><br>
+			<jsp:include page="message.jsp"></jsp:include><br> <label
+				for="uname">Admin ID:</label> <span class="required">*</span><br>
 			<input type="text" id="uname" name="uname" required="required"
 				autofocus="autofocus" placeholder="Enter your id"> <br>
 			<br> <label for="pass">Access Key</label> <span class="required">*</span><br>
@@ -26,8 +27,7 @@
 				placeholder="Enter access key"><br> <br>
 			<button class="btn btn-primary">Enter</button>
 			<button type="reset" class="btn btn-secondary">Reset</button>
-			<br>
-			<br>
+			<br> <br>
 		</form>
 		Not yet Registered? <a href="adminRegister.jsp"> Click here to
 			register</a>

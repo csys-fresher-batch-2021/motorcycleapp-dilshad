@@ -16,6 +16,11 @@ import in.dilshad.util.ConnectionUtil;
 import in.dilshad.util.Logger;
 
 public class OwnerDAO {
+	/**
+	 * Adds owner details to the database
+	 * 
+	 * @param owner
+	 */
 	public static void addOwner(OwnerDTO owner) {
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -45,6 +50,12 @@ public class OwnerDAO {
 		}
 	}
 
+	/**
+	 * Gives the list of partial bike specification and owner details of the
+	 * unverified bikes.
+	 * 
+	 * @return
+	 */
 	public static List<UnverifiedBikeDTO> getUnverifiedBikes() {
 		final List<UnverifiedBikeDTO> bikeList = new ArrayList<>();
 		Connection connection = null;
@@ -85,6 +96,11 @@ public class OwnerDAO {
 		return bikeList;
 	}
 
+	/**
+	 * Removes the Owner details by providing bike plate number
+	 * 
+	 * @param noPlate
+	 */
 	public static void removeOwner(String noPlate) {
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -105,6 +121,12 @@ public class OwnerDAO {
 		}
 	}
 
+	/**
+	 * Get owner details for the given plate number.
+	 * 
+	 * @param plateNo
+	 * @return
+	 */
 	public static OwnerDTO getOwnerDetails(String plateNo) {
 		OwnerDTO owner = null;
 		Connection connection = null;
@@ -113,7 +135,7 @@ public class OwnerDAO {
 
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT seller_bike_no, seller_name, seller_address, seller_mobile_no,  FROM seller_details WHERE Plate_No =?";
+			String sql = "SELECT seller_name, seller_address, seller_mobile_no  FROM seller_details WHERE seller_bike_no =?;";
 			pst = connection.prepareStatement(sql);
 
 			pst.setString(1, plateNo);

@@ -18,8 +18,8 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-	
-	<h3>List of bikes yet to verify</h3>
+
+		<h3>List of bikes yet to verify</h3>
 		<%
 		List<UnverifiedBikeDTO> bikeList = (List<UnverifiedBikeDTO>) request.getAttribute("TO_VERIFY_DETAILS");
 		if (bikeList == null)
@@ -39,7 +39,9 @@
 					<th id="ownerphoneNo">Phone no.</th>
 					<th id="time">Added Time</th>
 
-					<th id="action">Status</th>
+					<th id="action">Verification</th>
+					<th id="action">Remove</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -59,7 +61,10 @@
 
 					<td><a
 						href="UpdateBikeStatusServlet?plateNo=<%=bike.getPlateNo()%>"
-						class=" btn btn-danger">Verify</a></td>
+						class=" btn btn-warning">Confirm</a></td>
+						<td><a
+						href="RemoveUnverifiedBikeServlet?noPlate=<%=bike.getPlateNo()%>"
+						class=" btn btn-danger">Delete</a></td>
 				</tr>
 				<%
 				}
@@ -71,6 +76,8 @@
 		<%
 		}
 		%>
+					<br><jsp:include page="message.jsp"></jsp:include><br>
+		
 	</main>
 
 </body>

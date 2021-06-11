@@ -86,7 +86,7 @@ public class BikeDAO {
 			connection = ConnectionUtil.getConnection();
 
 			// Sql command
-			String sql = "SELECT * FROM bike_specification WHERE status = 'true' ORDER BY bike_manufacturer";
+			String sql = "SELECT bike_manufacturer, bike_model, bike_color, bike_price, odometer_reading, manufacture_year, status, fuel_type, vin, plate_no FROM bike_specification WHERE status = 'true' ORDER BY bike_manufacturer";
 			// Execution Step
 			pst = connection.prepareStatement(sql);
 			ResultSet result = pst.executeQuery();
@@ -130,7 +130,7 @@ public class BikeDAO {
 
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM Bike_Specification WHERE Plate_No =?";
+			String sql = "SELECT bike_manufacturer, bike_model, bike_color, bike_price, odometer_reading, manufacture_year, status, fuel_type, vin, plate_no FROM Bike_Specification WHERE status = 'true' AND Plate_No =?";
 			pst = connection.prepareStatement(sql);
 
 			pst.setString(1, plateNo);
@@ -198,7 +198,7 @@ public class BikeDAO {
 		try {
 			connection = ConnectionUtil.getConnection();
 
-			String sql = "UPDATE  bike_specification SET odometer_reading = ?, bike_price = ? WHERE plate_no = ?";
+			String sql = "UPDATE  bike_specification SET odometer_reading = ?, bike_price = ? WHERE status = 'true' AND plate_no = ?";
 
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, km);
@@ -229,7 +229,7 @@ public class BikeDAO {
 
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM bike_specification WHERE bike_manufacturer ILIKE  ? AND bike_model ILIKE ?";
+			String sql = "SELECT bike_manufacturer, bike_model, bike_color, bike_price, odometer_reading, manufacture_year, status, fuel_type, vin, plate_no FROM bike_specification WHERE status = 'true' AND bike_manufacturer ILIKE  ? AND bike_model ILIKE ?";
 
 			System.out.println(sql);
 			pst = connection.prepareStatement(sql);
@@ -280,7 +280,7 @@ public class BikeDAO {
 
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM bike_specification WHERE bike_price BETWEEN ? AND ? ORDER BY bike_price ASC ";
+			String sql = "SELECT bike_manufacturer, bike_model, bike_color, bike_price, odometer_reading, manufacture_year, status, fuel_type, vin, plate_no FROM bike_specification WHERE status = 'true' AND bike_price BETWEEN ? AND ? ORDER BY bike_price ASC ";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, min);
 			pst.setInt(2, max);

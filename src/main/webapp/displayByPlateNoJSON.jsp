@@ -59,9 +59,14 @@ img {
 		
 		
 		<br>
-		<button class="btn btn-danger" style="visibility: hidden"
+		<button class="btn btn-info" style="visibility: hidden"
 			id="continue" type="button" onclick="ownerDetails()">Show Owner
 			Details </button>
+			
+							<strong><article id="ownerDetails" class="details"></article></strong>
+			
+			
+			
 		<script>
 
 function getBike(){
@@ -92,6 +97,7 @@ function getBike(){
 	})
 }
 
+
 function ownerDetails(){
 	event.preventDefault();
 
@@ -101,7 +107,7 @@ function ownerDetails(){
 	fetch(url).then(res=> res.json()).then(res=>{
 		let owner = res;
 		
-		let content = "";
+		let content1 = "";
 		if(owner==null || owner.errorMessage != null){
 			alert(owner.errorMessage);
 		}
@@ -111,14 +117,17 @@ function ownerDetails(){
 		if(owner.status){
 			status = "Verified";
 		}
-		content += "<br><p> Bike Manufacturer: " + owner. + "</p><p> Bike Model: "+ bike.bikeModel + "</p><p>Bike Color: " + bike.bikeColor + "</p><p>Bike Price: " + bike.bikePrice +"</p><p>Odometer reading: " + bike.km +"</p><p> Manufacture Year: " + bike.manufactureYear + "</p><p> Status: " + status + "</p><p>Fuel Type: " + bike.engineDetails.fuelType + "</p><p>VIN: " + bike.engineDetails.vin +"</p>"; 
+		content1 += "<br><p> Owner Name: " + owner.ownerName + "</p><p> Owner Address: "+ owner.ownerAddress + "</p><p>Phone Number: " + owner.ownerPhoneNo +"</p>"; 
 		
-		console.log(content);
-		document.querySelector("#details").innerHTML= content;
-		document.getElementById("continue").style.visibility = "visible";	
+		console.log(content1);
+		document.querySelector("#ownerDetails").innerHTML= content1;
 		}	
 	})
 }
+
+
+
+
 	
 </script>
 	</main>

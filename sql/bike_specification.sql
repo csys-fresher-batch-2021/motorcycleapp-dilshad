@@ -21,7 +21,7 @@ INSERT INTO bike_specification(bike_manufacturer, bike_model,
 							   VALUES ('TVS',  'Apache180', 
 									   'Red', '47800', 
 									   '78955', '2002', 
-									   'true', 'Petrol', 
+									   'false', 'Petrol', 
 									   'EDIO3456KO22OK4ML','KL23FR5498');
 									   
 
@@ -35,7 +35,7 @@ INSERT INTO bike_specification(bike_manufacturer, bike_model,
 							   VALUES ('TVS',  'iQube', 
 									   'White', '100800', 
 									   '58955', '2010', 
-									   'true', 'Electric', 
+									   'false', 'Electric', 
 									   'MTTQ9OEKO22OK4ML2','TN23ER3487');
 	
 									   
@@ -48,7 +48,7 @@ INSERT INTO bike_specification(bike_manufacturer, bike_model,
 							   VALUES ('Hero',  'Splendor', 
 									   'Blue', '22500', 
 									   '58955', '2007', 
-									   'true', 'Petrol', 
+									   'false', 'Petrol', 
 									   'LPTQ9O12322OK4ML2','TN98ER3421');
 	
 									   
