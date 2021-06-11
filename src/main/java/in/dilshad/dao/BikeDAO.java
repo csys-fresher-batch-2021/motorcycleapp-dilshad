@@ -65,7 +65,7 @@ public class BikeDAO {
 			pst.executeUpdate();
 
 		} catch (SQLException e) {
-			Logger.println(e.getMessage());
+			Logger.println(e);
 			throw new DBException("Unable to Add Details");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -109,6 +109,7 @@ public class BikeDAO {
 			}
 			System.out.println(bikeList);
 		} catch (SQLException e) {
+			Logger.println(e);
 			throw new DBException("Unable to Fetch details from database table");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -152,6 +153,7 @@ public class BikeDAO {
 				bikeSpecification.setEngineDetails(engineDetails);
 			}
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Unable to Fetch bike for Plate no." + plateNo);
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -179,6 +181,7 @@ public class BikeDAO {
 			if (status == 0)
 				throw new DBException("No bikes found for the plate no:" + noPlate);
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Could not remove the bike based on the plate number given");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -206,6 +209,7 @@ public class BikeDAO {
 			pst.setString(3, noPlate);
 			pst.executeUpdate();
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Could not update the bike based on the plate number given");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -256,6 +260,7 @@ public class BikeDAO {
 			}
 
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Could not fetch bikes based on model");
 		} finally {
 			ConnectionUtil.closeConnection(result, pst, connection);
@@ -305,6 +310,7 @@ public class BikeDAO {
 			}
 
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Could not fetch bikes based on price range");
 		} finally {
 			ConnectionUtil.closeConnection(result, pst, connection);
@@ -330,6 +336,7 @@ public class BikeDAO {
 			pst.setString(1, plateNo);
 			pst.executeUpdate();
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Could not update the bike based on the plate number given");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);

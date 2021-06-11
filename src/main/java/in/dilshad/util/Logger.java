@@ -15,4 +15,9 @@ public class Logger {
 		System.out.println(message);
 	}
 
+	public static void println(Object printStackTrace) {
+		System.out.println(printStackTrace);
+		
+	}
+
 }

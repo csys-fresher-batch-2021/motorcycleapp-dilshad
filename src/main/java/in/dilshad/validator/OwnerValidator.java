@@ -8,6 +8,9 @@ import in.dilshad.exception.ValidationException;
 import in.dilshad.util.StringValidator;
 
 public class OwnerValidator {
+	private OwnerValidator() {
+		//Default constructor
+	}
 	/**
 	 * Validates the owner details and throws exception consisting of list of
 	 * incorrect fields.

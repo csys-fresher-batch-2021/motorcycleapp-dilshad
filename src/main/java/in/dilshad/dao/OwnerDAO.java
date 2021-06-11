@@ -42,8 +42,7 @@ public class OwnerDAO {
 			pst.executeUpdate();
 
 		} catch (SQLException e) {
-			Logger.println(e.getMessage());
-			e.printStackTrace();
+			Logger.println(e);
 			throw new DBException("Unable to Add Details");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -84,11 +83,10 @@ public class OwnerDAO {
 				Timestamp timestamp = result.getTimestamp("created_date");
 				LocalDateTime createdDate = timestamp.toLocalDateTime(); // Auditing table
 				unverifiedBikeList.setAddedTime(createdDate);
-				System.out.println("####################" + createdDate + "###########");
-				bikeList.add(unverifiedBikeList);
+					bikeList.add(unverifiedBikeList);
 			}
-			System.out.println(bikeList);
 		} catch (SQLException e) {
+			Logger.println(e);
 			throw new DBException("Unable to Fetch details from database table");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -115,6 +113,7 @@ public class OwnerDAO {
 			if (status == 0)
 				throw new DBException("No bikes found for the plate no:" + noPlate);
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Could not remove the bike based on the plate number given");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -148,6 +147,7 @@ public class OwnerDAO {
 				owner.setOwnerPhoneNo(result.getLong("seller_mobile_no"));
 			}
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Unable to Fetch Owner details");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);

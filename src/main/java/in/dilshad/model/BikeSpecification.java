@@ -5,10 +5,10 @@ import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
-
+@ToString
 @AllArgsConstructor
 public class BikeSpecification {
 
@@ -28,7 +28,6 @@ public class BikeSpecification {
 
 	private Map<String, String> engineDetails = new HashMap<>();
 
-	
 	public BikeSpecification() {
 		this.status = false;
 	}
