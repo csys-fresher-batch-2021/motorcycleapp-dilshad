@@ -32,6 +32,9 @@
       
   ##### Feature 8: Shortlist bikes based on price #####
    This feature enables user to specify the upper and lower price limits.  The list of bike will be displayed in ascending order for the specified price limit. Customer can plan for the budget quickly.
+   
+   ##### Feature 9: Verify Bike status #####
+   This feature is ment for admin and brokers. Once the bike is added by admin, the same or other admin has to go to the site and verify the bike details, conditions etc.  Only if it mets the standard requirement, admin can switch the status of bike from NOT_VERIFIED to VERIFIED, then only it is visible to public, else it is visible only to admins.  If the entered details is not fine, then admin has the right to remove bike & owner details from the database.
 
 ----
  ## Bike specification fields ##
@@ -66,6 +69,17 @@
 
     String password - 4 to 20 characters, alphabets, numbers & all special characters.   
 
+## Owner Details
+```
+String bikePlateNo - strictly 17 alphanumeric characters (e.g. DFG65HJ6543FT9NJ7), only capital letters, pattern [A-Z0-9]{17}. 
+                       Links bike details and owner details.
+
+String ownerName - 2 to 20 characters
+
+String ownerAddress - 5 to 200 characters
+
+Long ownerPhoneNo - Strictly 10 digits. Should start with 9,8,7 or 6.
+```
 ----
 
  ## Benefits ##
