@@ -9,6 +9,9 @@ import in.dilshad.exception.ServiceException;
 import in.dilshad.validator.OwnerValidator;
 
 public class OwnerManager {
+	private OwnerManager() {
+		
+	}
 
 	/**
 	 * Accepts owner details and passes to DAO layer after validation is successful.

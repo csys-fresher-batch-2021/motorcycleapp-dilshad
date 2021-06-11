@@ -16,6 +16,9 @@ import in.dilshad.util.ConnectionUtil;
 import in.dilshad.util.Logger;
 
 public class OwnerDAO {
+	private OwnerDAO() {
+		
+	}
 	/**
 	 * Adds owner details to the database
 	 * 
