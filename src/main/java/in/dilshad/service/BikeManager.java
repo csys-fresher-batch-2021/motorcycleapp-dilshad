@@ -125,6 +125,14 @@ public class BikeManager {
 		}
 	}
 
+	/**
+	 * Accepts price limits and returns the list of bikes which lies within the
+	 * range.
+	 * 
+	 * @param min
+	 * @param max
+	 * @return
+	 */
 	public static List<BikeSpecification> shortlistByPrice(int min, int max) {
 		try {
 			if (!BikeValidator.isValidPriceLimit(min, max))
@@ -133,5 +141,15 @@ public class BikeManager {
 			throw new ServiceException(e.getMessage());
 		}
 		return BikeDAO.shortlistByPrice(min, max);
+	}
+
+	/**
+	 * Updates the status from 'false' - NOT VERIFIED to 'true' - "VERIFIED"
+	 * provided valid Plate number must be passed.
+	 * 
+	 * @param noPlate
+	 */
+	public static void updateBikeStatus(String noPlate) {
+		BikeDAO.updateBikeStatustoTrue(noPlate);
 	}
 }

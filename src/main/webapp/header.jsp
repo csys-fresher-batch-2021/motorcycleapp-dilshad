@@ -35,14 +35,16 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_ADMIN");
 				<li class="nav-item"><a class="nav-link"
 					href="DisplayBikesServlet">Show Room</a></li>
 
+				<li class="nav-item"><a class="nav-link"
+					href="displayByPlateNoJSON.jsp">Buy</a></li>
+
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="dropdownId"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search
 						by</a>
 					<div class="dropdown-menu" aria-labelledby="dropdownId">
-						<a class="dropdown-item" href="displayByPlateNoJSON.jsp">Plate
-							no.</a> <a class="dropdown-item" href="findBikeByModel.jsp">Bike
-							model</a> <a class="dropdown-item" href="shortlistByPrice.jsp">Price
+						<a class="dropdown-item" href="findBikeByModel.jsp">Bike model</a>
+						<a class="dropdown-item" href="shortlistByPrice.jsp">Price
 							limit</a>
 					</div></li>
 
@@ -52,6 +54,8 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_ADMIN");
 				<li class="nav-item"><a class="nav-link" href="addBike.jsp">Add
 						bike</a></li>
 
+				<li class="nav-item"><a class="nav-link"
+					href="GetUnverifiedBikeServlet">Confirm upload</a></li>
 				<li class="nav-item"><a class="nav-link" href="removeBike.jsp">Remove</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="updateBikeDetails.jsp">Update</a></li>

@@ -1,8 +1,6 @@
 package in.dilshad.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import in.dilshad.service.BikeManager;
-import in.dilshad.service.OwnerManager;
 
 /**
- * Servlet implementation class RemoveBikeServlet
+ * Servlet implementation class RemoveUnverifiedBikeServlet
  */
-@WebServlet("/RemoveBikeServlet")
-public class RemoveBikeServlet extends HttpServlet {
+@WebServlet("/RemoveUnverifiedBikeServlet")
+public class RemoveUnverifiedBikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public RemoveBikeServlet() {
+	public RemoveUnverifiedBikeServlet() {
 		super();
 	}
 
@@ -33,19 +30,14 @@ public class RemoveBikeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String noPlate = request.getParameter("noPlate").trim();
-		PrintWriter out = response.getWriter();
-
 		try {
+			String noPlate = request.getParameter("noPlate").trim();
 			BikeManager.removeBike(noPlate);
-			OwnerManager.removeOwnerDetails(noPlate);
-			out.print(true);
-			out.flush();
+			response.sendRedirect(
+					"GetUnverifiedBikeServlet?infoMessage= Bike no." + noPlate + " Successfully removed from database.");
 		} catch (Exception e) {
-			out.print(false);
-			out.flush();
+			response.sendRedirect("GetUnverifiedBikeServlet?errorMessage=" + e.getMessage());
 		}
-
 	}
 
 }

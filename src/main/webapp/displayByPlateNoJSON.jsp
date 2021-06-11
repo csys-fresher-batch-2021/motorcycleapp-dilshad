@@ -56,6 +56,17 @@ img {
 
 			</div>
 		</div>
+		
+		
+		<br>
+		<button class="btn btn-info" style="visibility: hidden"
+			id="continue" type="button" onclick="ownerDetails()">Show Owner
+			Details </button>
+			
+							<strong><article id="ownerDetails" class="details"></article></strong>
+			
+			
+			
 		<script>
 
 function getBike(){
@@ -81,9 +92,42 @@ function getBike(){
 		
 		console.log(content);
 		document.querySelector("#details").innerHTML= content;
+		document.getElementById("continue").style.visibility = "visible";	
 		}	
 	})
 }
+
+
+function ownerDetails(){
+	event.preventDefault();
+
+	let plateNo = document.querySelector("#plateNo").value;
+	let url = "GetOwnerDetailsServlet?noPlate=" + plateNo;
+	
+	fetch(url).then(res=> res.json()).then(res=>{
+		let owner = res;
+		
+		let content1 = "";
+		if(owner==null || owner.errorMessage != null){
+			alert(owner.errorMessage);
+		}
+		else{
+			
+		let status = "Not Verified"
+		if(owner.status){
+			status = "Verified";
+		}
+		content1 += "<br><p> Owner Name: " + owner.ownerName + "</p><p> Owner Address: "+ owner.ownerAddress + "</p><p>Phone Number: " + owner.ownerPhoneNo +"</p>"; 
+		
+		console.log(content1);
+		document.querySelector("#ownerDetails").innerHTML= content1;
+		}	
+	})
+}
+
+
+
+
 	
 </script>
 	</main>

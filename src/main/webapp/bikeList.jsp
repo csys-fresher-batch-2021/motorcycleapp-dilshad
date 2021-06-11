@@ -33,7 +33,7 @@
 		<%
 		List<BikeSpecification> bikeList = (List<BikeSpecification>) request.getAttribute("BIKE_LIST");
 		if (bikeList == null) {
-			out.print("No records found");
+			out.println("No records found");
 		} else {
 		%>
 		<table>

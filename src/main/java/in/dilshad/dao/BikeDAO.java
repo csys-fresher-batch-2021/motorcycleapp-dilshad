@@ -13,6 +13,7 @@ import in.dilshad.exception.DBException;
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.util.ConnectionUtil;
 import in.dilshad.util.Constants;
+import in.dilshad.util.Logger;
 
 public class BikeDAO {
 
@@ -64,6 +65,7 @@ public class BikeDAO {
 			pst.executeUpdate();
 
 		} catch (SQLException e) {
+			Logger.println(e);
 			throw new DBException("Unable to Add Details");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -84,7 +86,7 @@ public class BikeDAO {
 			connection = ConnectionUtil.getConnection();
 
 			// Sql command
-			String sql = "SELECT * FROM bike_specification ORDER BY bike_manufacturer";
+			String sql = "SELECT bike_manufacturer, bike_model, bike_color, bike_price, odometer_reading, manufacture_year, status, fuel_type, vin, plate_no FROM bike_specification WHERE status = 'true' ORDER BY bike_manufacturer";
 			// Execution Step
 			pst = connection.prepareStatement(sql);
 			ResultSet result = pst.executeQuery();
@@ -107,6 +109,7 @@ public class BikeDAO {
 			}
 			System.out.println(bikeList);
 		} catch (SQLException e) {
+			Logger.println(e);
 			throw new DBException("Unable to Fetch details from database table");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -128,7 +131,7 @@ public class BikeDAO {
 
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM Bike_Specification WHERE Plate_No =?";
+			String sql = "SELECT bike_manufacturer, bike_model, bike_color, bike_price, odometer_reading, manufacture_year, status, fuel_type, vin, plate_no FROM Bike_Specification WHERE status = 'true' AND Plate_No =?";
 			pst = connection.prepareStatement(sql);
 
 			pst.setString(1, plateNo);
@@ -150,6 +153,7 @@ public class BikeDAO {
 				bikeSpecification.setEngineDetails(engineDetails);
 			}
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Unable to Fetch bike for Plate no." + plateNo);
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -177,6 +181,7 @@ public class BikeDAO {
 			if (status == 0)
 				throw new DBException("No bikes found for the plate no:" + noPlate);
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Could not remove the bike based on the plate number given");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -196,7 +201,7 @@ public class BikeDAO {
 		try {
 			connection = ConnectionUtil.getConnection();
 
-			String sql = "UPDATE  bike_specification SET odometer_reading = ?, bike_price = ? WHERE plate_no = ?";
+			String sql = "UPDATE  bike_specification SET odometer_reading = ?, bike_price = ? WHERE status = 'true' AND plate_no = ?";
 
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, km);
@@ -204,6 +209,7 @@ public class BikeDAO {
 			pst.setString(3, noPlate);
 			pst.executeUpdate();
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Could not update the bike based on the plate number given");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -227,7 +233,7 @@ public class BikeDAO {
 
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM bike_specification WHERE bike_manufacturer ILIKE  ? AND bike_model ILIKE ?";
+			String sql = "SELECT bike_manufacturer, bike_model, bike_color, bike_price, odometer_reading, manufacture_year, status, fuel_type, vin, plate_no FROM bike_specification WHERE status = 'true' AND bike_manufacturer ILIKE  ? AND bike_model ILIKE ?";
 
 			System.out.println(sql);
 			pst = connection.prepareStatement(sql);
@@ -254,6 +260,7 @@ public class BikeDAO {
 			}
 
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Could not fetch bikes based on model");
 		} finally {
 			ConnectionUtil.closeConnection(result, pst, connection);
@@ -278,7 +285,7 @@ public class BikeDAO {
 
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM bike_specification WHERE bike_price BETWEEN ? AND ? ORDER BY bike_price ASC ";
+			String sql = "SELECT bike_manufacturer, bike_model, bike_color, bike_price, odometer_reading, manufacture_year, status, fuel_type, vin, plate_no FROM bike_specification WHERE status = 'true' AND bike_price BETWEEN ? AND ? ORDER BY bike_price ASC ";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, min);
 			pst.setInt(2, max);
@@ -303,10 +310,36 @@ public class BikeDAO {
 			}
 
 		} catch (Exception e) {
+			Logger.println(e);
 			throw new DBException("Could not fetch bikes based on price range");
 		} finally {
 			ConnectionUtil.closeConnection(result, pst, connection);
 		}
 		return bikeList;
+	}
+
+	/**
+	 * Updates the status of bike from NOT_VERIFIED to VERIFIED for the given
+	 * existing plate number.
+	 * 
+	 * @param plateNo
+	 */
+	public static void updateBikeStatustoTrue(String plateNo) {
+		Connection connection = null;
+		PreparedStatement pst = null;
+		try {
+			connection = ConnectionUtil.getConnection();
+
+			String sql = "UPDATE  bike_specification SET status = 'true' WHERE plate_no = ?";
+
+			pst = connection.prepareStatement(sql);
+			pst.setString(1, plateNo);
+			pst.executeUpdate();
+		} catch (Exception e) {
+			Logger.println(e);
+			throw new DBException("Could not update the bike based on the plate number given");
+		} finally {
+			ConnectionUtil.closeConnection(pst, connection);
+		}
 	}
 }
