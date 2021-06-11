@@ -56,6 +56,12 @@ img {
 
 			</div>
 		</div>
+		
+		
+		<br>
+		<button class="btn btn-danger" style="visibility: hidden"
+			id="continue" type="button" onclick="ownerDetails()">Show Owner
+			Details </button>
 		<script>
 
 function getBike(){
@@ -81,6 +87,35 @@ function getBike(){
 		
 		console.log(content);
 		document.querySelector("#details").innerHTML= content;
+		document.getElementById("continue").style.visibility = "visible";	
+		}	
+	})
+}
+
+function ownerDetails(){
+	event.preventDefault();
+
+	let plateNo = document.querySelector("#plateNo").value;
+	let url = "GetOwnerDetailsServlet?noPlate=" + plateNo;
+	
+	fetch(url).then(res=> res.json()).then(res=>{
+		let owner = res;
+		
+		let content = "";
+		if(owner==null || owner.errorMessage != null){
+			alert(owner.errorMessage);
+		}
+		else{
+			
+		let status = "Not Verified"
+		if(owner.status){
+			status = "Verified";
+		}
+		content += "<br><p> Bike Manufacturer: " + owner. + "</p><p> Bike Model: "+ bike.bikeModel + "</p><p>Bike Color: " + bike.bikeColor + "</p><p>Bike Price: " + bike.bikePrice +"</p><p>Odometer reading: " + bike.km +"</p><p> Manufacture Year: " + bike.manufactureYear + "</p><p> Status: " + status + "</p><p>Fuel Type: " + bike.engineDetails.fuelType + "</p><p>VIN: " + bike.engineDetails.vin +"</p>"; 
+		
+		console.log(content);
+		document.querySelector("#details").innerHTML= content;
+		document.getElementById("continue").style.visibility = "visible";	
 		}	
 	})
 }

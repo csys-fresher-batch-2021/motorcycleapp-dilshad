@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.dilshad.dto.OwnerDTO;
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.service.BikeManager;
+import in.dilshad.service.OwnerManager;
 
 /**
  * Servlet implementation class Addbike
@@ -31,6 +33,7 @@ public class AddBikeServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		BikeSpecification newBike = new BikeSpecification();
+		OwnerDTO ownerDTO = new OwnerDTO();
 
 		String infoMessage = "Successfull input";
 
@@ -42,13 +45,20 @@ public class AddBikeServlet extends HttpServlet {
 		engineDetails.put("vin", request.getParameter("vin").trim());
 		engineDetails.put("noPlate", request.getParameter("noPlate").trim());
 		newBike.setEngineDetails(engineDetails);
-		newBike.setStatus(Boolean.parseBoolean(request.getParameter("status").trim()));
 
+		ownerDTO.setOwnerName(request.getParameter("ownerName").trim());
+		ownerDTO.setOwnerAddress(request.getParameter("ownerAddress").trim());
+		ownerDTO.setBikePlateNo(request.getParameter("noPlate").trim());
+		
 		try {
+			ownerDTO.setOwnerPhoneNo(Long.parseLong(request.getParameter("ownerPhoneNo")));
+
 			newBike.setKm(Integer.parseInt(request.getParameter("km").trim()));
 			newBike.setManufactureYear(Integer.parseInt(request.getParameter("manufactureYear").trim()));
 			newBike.setBikePrice(Float.parseFloat(request.getParameter("price").trim()));
 			BikeManager.addBike(newBike);
+			
+			OwnerManager.addOwnerDetails(ownerDTO);
 			response.sendRedirect("DisplayBikesServlet?infoMessage=" + infoMessage);
 
 		} catch (Exception e) {

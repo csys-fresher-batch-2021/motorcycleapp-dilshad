@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import in.dilshad.service.BikeManager;
+import in.dilshad.service.OwnerManager;
 
 /**
  * Servlet implementation class RemoveBikeServlet
@@ -37,6 +38,7 @@ public class RemoveBikeServlet extends HttpServlet {
 
 		try {
 			BikeManager.removeBike(noPlate);
+			OwnerManager.removeOwnerDetails(noPlate);
 			out.print(true);
 			out.flush();
 		} catch (Exception e) {

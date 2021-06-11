@@ -134,4 +134,8 @@ public class BikeManager {
 		}
 		return BikeDAO.shortlistByPrice(min, max);
 	}
+	
+	public static void updateBikeStatus(String noPlate) {
+		BikeDAO.updateBikeStatustoTrue(noPlate);
+	}
 }

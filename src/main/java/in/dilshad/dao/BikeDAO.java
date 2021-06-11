@@ -13,6 +13,7 @@ import in.dilshad.exception.DBException;
 import in.dilshad.model.BikeSpecification;
 import in.dilshad.util.ConnectionUtil;
 import in.dilshad.util.Constants;
+import in.dilshad.util.Logger;
 
 public class BikeDAO {
 
@@ -64,6 +65,7 @@ public class BikeDAO {
 			pst.executeUpdate();
 
 		} catch (SQLException e) {
+			Logger.println(e.getMessage());
 			throw new DBException("Unable to Add Details");
 		} finally {
 			ConnectionUtil.closeConnection(pst, connection);
@@ -84,7 +86,7 @@ public class BikeDAO {
 			connection = ConnectionUtil.getConnection();
 
 			// Sql command
-			String sql = "SELECT * FROM bike_specification ORDER BY bike_manufacturer";
+			String sql = "SELECT * FROM bike_specification WHERE status = 'true' ORDER BY bike_manufacturer";
 			// Execution Step
 			pst = connection.prepareStatement(sql);
 			ResultSet result = pst.executeQuery();
@@ -308,5 +310,29 @@ public class BikeDAO {
 			ConnectionUtil.closeConnection(result, pst, connection);
 		}
 		return bikeList;
+	}
+
+	/**
+	 * Updates the status of bike from NOT_VERIFIED to VERIFIED for the given
+	 * existing plate number.
+	 * 
+	 * @param plateNo
+	 */
+	public static void updateBikeStatustoTrue(String plateNo) {
+		Connection connection = null;
+		PreparedStatement pst = null;
+		try {
+			connection = ConnectionUtil.getConnection();
+
+			String sql = "UPDATE  bike_specification SET status = 'true' WHERE plate_no = ?";
+
+			pst = connection.prepareStatement(sql);
+			pst.setString(1, plateNo);
+			pst.executeUpdate();
+		} catch (Exception e) {
+			throw new DBException("Could not update the bike based on the plate number given");
+		} finally {
+			ConnectionUtil.closeConnection(pst, connection);
+		}
 	}
 }

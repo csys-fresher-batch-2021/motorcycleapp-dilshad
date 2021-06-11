@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
+
 @AllArgsConstructor
 public class BikeSpecification {
 
@@ -28,4 +28,8 @@ public class BikeSpecification {
 
 	private Map<String, String> engineDetails = new HashMap<>();
 
+	
+	public BikeSpecification() {
+		this.status = false;
+	}
 }
